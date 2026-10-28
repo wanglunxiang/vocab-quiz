@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>英语完形填空词汇测试</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh;line-height:1.6;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.container{max-width:640px;margin:0 auto;padding:20px 16px}
+.hidden{display:none!important}
+
+/* SECTION: select-screen */
+.select-screen{text-align:center;padding-top:8vh}
+.select-screen .badge{display:inline-block;background:#e8f4fd;color:#1976d2;padding:4px 14px;border-radius:20px;font-size:0.85rem;margin-bottom:20px}
+.select-screen h1{font-size:1.5rem;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+.select-screen .subtitle{font-size:0.9rem;color:#666;margin-bottom:28px;line-height:1.7}
+.test-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.test-card{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 3px 14px rgba(0,0,0,.06);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:16px;text-align:left;border:2px solid transparent;-webkit-tap-highlight-color:transparent}
+.test-card:active{transform:scale(.98)}
+.test-card.selected{border-color:#4361ee;background:#f0f3ff}
+.test-card .card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.test-card .card-icon.zhongkao{background:linear-gradient(135deg,#10b981,#059669)}
+.test-card .card-icon.gaoyi{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.test-card .card-icon.gaokao{background:linear-gradient(135deg,#6366f1,#4338ca)}
+.test-card .card-body{flex:1}
+.test-card .card-title{font-size:1.1rem;font-weight:700;color:#1a1a2e;margin-bottom:2px}
+.test-card .card-desc{font-size:0.82rem;color:#888;line-height:1.5}
+.test-card .card-count{font-size:0.78rem;color:#4361ee;font-weight:600;margin-top:4px}
+
+/* SECTION: common buttons */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4361ee,#3a56d4);color:#fff;border:none;border-radius:14px;padding:16px 48px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(67,97,238,.35);min-height:52px;min-width:200px;-webkit-tap-highlight-color:transparent}
+.btn-primary:active{transform:scale(.97)}
+.btn-primary:disabled{opacity:.45;pointer-events:none}
+.btn-green{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:14px;padding:14px 36px;font-size:1rem;font-weight:600;cursor:pointer;transition:transform .15s;min-height:48px;box-shadow:0 4px 16px rgba(16,185,129,.3);-webkit-tap-highlight-color:transparent}
+.btn-green:active{transform:scale(.97)}
+.btn-green:disabled{opacity:.45;pointer-events:none}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#4361ee;border:2px solid #4361ee;border-radius:14px;padding:14px 36px;font-size:1rem;font-weight:600;cursor:pointer;transition:transform .15s;min-height:48px;-webkit-tap-highlight-color:transparent}
+.btn-secondary:active{transform:scale(.97)}
+
+/* SECTION: info-screen */
+.info-screen{text-align:center;padding-top:12vh}
+.info-screen h2{font-size:1.3rem;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.info-screen .info-desc{font-size:0.88rem;color:#888;margin-bottom:24px}
+.info-screen .selected-badge{display:inline-block;background:#e8f4fd;color:#4361ee;padding:4px 16px;border-radius:20px;font-size:0.85rem;font-weight:600;margin-bottom:20px}
+.info-card-box{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:24px}
+.form-group{margin-bottom:18px;text-align:left}
+.form-label{display:block;font-size:0.9rem;font-weight:600;color:#444;margin-bottom:6px;padding-left:2px}
+.form-input{width:100%;padding:14px 16px;border:2px solid #e0e0e0;border-radius:12px;font-size:1rem;color:#333;background:#fff;transition:border-color .2s;outline:none;-webkit-appearance:none}
+.form-input:focus{border-color:#4361ee}
+.form-input::placeholder{color:#bbb}
+
+/* SECTION: quiz */
+.quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.quiz-progress{font-size:0.9rem;color:#666;font-weight:500}
+.quiz-timer{font-size:0.9rem;color:#999}
+.progress-bar{width:100%;height:6px;background:#e0e0e0;border-radius:3px;margin-bottom:24px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#4361ee,#7c3aed);border-radius:3px;transition:width .3s ease}
+.question-card{background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:16px}
+.question-number{font-size:0.8rem;color:#4361ee;font-weight:600;margin-bottom:10px}
+.question-word{font-size:1.7rem;font-weight:700;color:#1a1a2e;margin-bottom:4px;word-break:break-all;line-height:1.3}
+.question-hint{font-size:0.83rem;color:#999}
+.options-list{display:flex;flex-direction:column;gap:10px}
+.option-btn{display:flex;align-items:center;width:100%;background:#fff;border:2px solid #e8e8e8;border-radius:12px;padding:14px 16px;font-size:0.95rem;color:#333;cursor:pointer;transition:all .2s;text-align:left;line-height:1.5;min-height:50px;-webkit-tap-highlight-color:transparent}
+.option-btn:active{transform:scale(.98)}
+.option-btn .opt-label{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#f0f2f5;color:#666;font-size:0.82rem;font-weight:600;margin-right:12px;flex-shrink:0;transition:all .2s}
+.option-btn.correct{border-color:#10b981;background:#ecfdf5;animation:flash-correct .5s}
+.option-btn.correct .opt-label{background:#10b981;color:#fff}
+.option-btn.wrong{border-color:#ef4444;background:#fef2f2;animation:flash-wrong .5s}
+.option-btn.wrong .opt-label{background:#ef4444;color:#fff}
+.option-btn.disabled{pointer-events:none;opacity:.7}
+.option-btn.disabled.correct{opacity:1}
+@keyframes flash-correct{0%,100%{background:#ecfdf5}50%{background:#d1fae5}}
+@keyframes flash-wrong{0%,100%{background:#fef2f2}50%{background:#fecaca}}
+
+/* SECTION: result */
+.result-screen{padding-top:4vh}
+.result-hero{text-align:center;background:linear-gradient(135deg,#4361ee,#7c3aed);border-radius:20px;padding:28px 20px;color:#fff;margin-bottom:18px;box-shadow:0 8px 32px rgba(67,97,238,.3)}
+.result-hero .student-name{font-size:0.9rem;opacity:.85;margin-bottom:8px}
+.result-hero .score-big{font-size:3.2rem;font-weight:800;line-height:1}
+.result-hero .score-label{font-size:0.95rem;opacity:.85;margin-top:6px}
+.result-hero .score-detail{display:flex;justify-content:center;gap:28px;margin-top:16px}
+.result-hero .score-item{text-align:center}
+.result-hero .score-item .val{font-size:1.3rem;font-weight:700}
+.result-hero .score-item .lbl{font-size:0.78rem;opacity:.75;margin-top:2px}
+.result-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.stat-card{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.stat-card .stat-val{font-size:1.15rem;font-weight:700}
+.stat-card .stat-lbl{font-size:0.75rem;color:#888;margin-top:2px}
+.stat-card.green .stat-val{color:#10b981}
+.stat-card.red .stat-val{color:#ef4444}
+.stat-card.blue .stat-val{color:#4361ee}
+.submit-section{background:#fff;border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 2px 12px rgba(0,0,0,.05);text-align:center}
+.submit-section .submit-title{font-size:0.95rem;font-weight:600;color:#333;margin-bottom:4px}
+.submit-section .submit-desc{font-size:0.82rem;color:#888;margin-bottom:14px}
+.submit-status{margin-top:10px;font-size:0.88rem;padding:10px 14px;border-radius:10px}
+.submit-status.success{background:#ecfdf5;color:#065f46}
+.submit-status.error{background:#fef2f2;color:#991b1b}
+.submit-status.loading{background:#e8f4fd;color:#1e40af}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid #e0e0e0;border-top-color:#4361ee;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result-section{margin-bottom:20px}
+.result-section h3{font-size:1rem;font-weight:600;color:#333;margin-bottom:10px;padding-left:12px;border-left:4px solid #ef4444}
+.wrong-item{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.wrong-item .wi-word{font-size:1.05rem;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.wrong-item .wi-row{display:flex;gap:8px;align-items:baseline;margin-top:3px;font-size:0.88rem}
+.wrong-item .wi-tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:0.75rem;font-weight:500;flex-shrink:0}
+.wrong-item .wi-tag.yours{background:#fef2f2;color:#ef4444}
+.wrong-item .wi-tag.right{background:#ecfdf5;color:#10b981}
+.wrong-item .wi-text{color:#555}
+.result-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;padding-bottom:32px}
+
+@media(max-width:420px){
+  .container{padding:14px 10px}
+  .question-word{font-size:1.4rem}
+  .select-screen h1{font-size:1.3rem}
+  .result-hero{padding:24px 16px}
+  .result-hero .score-big{font-size:2.6rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- SECTION: select-screen -->
+  <div id="selectScreen" class="select-screen">
+    <div class="badge">英语完形填空</div>
+    <h1>常考词汇测试</h1>
+    <p class="subtitle">基于各地中考、高一、高考真题考频统计<br>5 套词库 · 选一个版本直接开测 · 每次随机 50 题</p>
+    <div class="test-cards">
+      <div class="test-card" id="cardZhongkao" data-test="zhongkao">
+        <div class="card-icon zhongkao">初</div>
+        <div class="card-body">
+          <div class="card-title">中考完形词汇</div>
+          <div class="card-desc">153 个中考完形填空高频词</div>
+          <div class="card-count">153 个核心词汇</div>
+        </div>
+      </div>
+      <div class="test-card" id="cardGaoyi" data-test="gaoyi">
+        <div class="card-icon gaoyi">高</div>
+        <div class="card-body">
+          <div class="card-title">高一完形词汇</div>
+          <div class="card-desc">150 个高一完形填空高频词</div>
+          <div class="card-count">150 个核心词汇</div>
+        </div>
+      </div>
+      <div class="test-card" id="cardGaokao" data-test="gaokao">
+        <div class="card-icon gaokao">考</div>
+        <div class="card-body">
+          <div class="card-title">高考完形词汇</div>
+          <div class="card-desc">530 个高考完形高频词 + 短语</div>
+          <div class="card-count">530 个高频词汇 + 短语</div>
+        </div>
+      </div>
+          <div class="test-card" id="cardZhongkao3" data-test="zhongkao3">
+        <div class="card-icon" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">词</div>
+        <div class="card-body">
+          <div class="card-title">中考常考词</div>
+          <div class="card-desc">飞祥老师 171 个中考高频常考词</div>
+          <div class="card-count">171 个常考词</div>
+        </div>
+      </div>
+      <div class="test-card" id="cardGaokao191" data-test="gaokao191">
+        <div class="card-icon" style="background:linear-gradient(135deg,#ec4899,#be185d)">阅</div>
+        <div class="card-body">
+          <div class="card-title">高考阅读 191 词</div>
+          <div class="card-desc">高考英语阅读题干选项常考词（必背）</div>
+          <div class="card-count">191 个必背词</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" id="btnNext" data-primary-action disabled>开始测试</button>
+  </div>
+
+  <!-- SECTION: quiz-screen -->
+  <div id="quizScreen" class="hidden">
+    <div class="quiz-header">
+      <span class="quiz-progress" id="quizProgress"></span>
+      <span class="quiz-timer" id="quizTimer"></span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="question-card">
+      <div class="question-number" id="qNumber"></div>
+      <div class="question-word" id="qWord"></div>
+      <div class="question-hint">请选择正确的中文释义</div>
+    </div>
+    <div class="options-list" id="optionsList"></div>
+  </div>
+
+  <!-- SECTION: result-screen -->
+  <div id="resultScreen" class="result-screen hidden">
+    <div class="result-hero">
+      <div class="student-name" id="resultStudentName"></div>
+      <div class="score-big" id="scoreBig"></div>
+      <div class="score-label">总分</div>
+      <div class="score-detail">
+        <div class="score-item"><div class="val" id="scoreCorrect"></div><div class="lbl">答对</div></div>
+        <div class="score-item"><div class="val" id="scoreWrong"></div><div class="lbl">答错</div></div>
+        <div class="score-item"><div class="val" id="scoreTime"></div><div class="lbl">用时</div></div>
+      </div>
+    </div>
+    <div class="result-stats">
+      <div class="stat-card green"><div class="stat-val" id="statAcc"></div><div class="stat-lbl">正确率</div></div>
+      <div class="stat-card red"><div class="stat-val" id="statWrongRate"></div><div class="stat-lbl">错误率</div></div>
+      <div class="stat-card blue"><div class="stat-val" id="statAvg"></div><div class="stat-lbl">平均用时</div></div>
+    </div>
+    <div class="submit-section" id="shotTip">
+      <div class="submit-title">测试完成</div>
+      <div class="submit-desc">请截图本页成绩和错题，发给助教老师</div>
+    </div>
+    <div id="wrongSection" class="result-section hidden">
+      <h3>答错词汇</h3>
+      <div id="wrongList"></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn-primary" id="btnRetry" data-primary-action>再测一轮</button>
+      <button class="btn-secondary" id="btnBackHome">换个版本</button>
+      <button class="btn-secondary" id="btnReview">只看错题</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* SECTION: data */
+var ALL_VOCAB = {"zhongkao":[{"en":"realize","zh":"意识到；认识到"},{"en":"understand","zh":"理解；明白"},{"en":"remember","zh":"记得；回忆起"},{"en":"forget","zh":"忘记；忽略"},{"en":"believe","zh":"相信；认为"},{"en":"imagine","zh":"想象；设想"},{"en":"notice","zh":"注意到；察觉"},{"en":"discover","zh":"发现；发觉"},{"en":"suggest","zh":"建议；暗示"},{"en":"decide","zh":"决定；决心"},{"en":"suppose","zh":"认为；假设"},{"en":"expect","zh":"期待；预期"},{"en":"consider","zh":"考虑；认为"},{"en":"explain","zh":"解释；说明"},{"en":"agree","zh":"同意；赞成"},{"en":"refuse","zh":"拒绝；回绝"},{"en":"accept","zh":"接受；认可"},{"en":"compare","zh":"比较；对比"},{"en":"choose","zh":"选择；挑选"},{"en":"recognize","zh":"认出；承认"},{"en":"enjoy","zh":"享受；喜爱"},{"en":"appreciate","zh":"欣赏；感激"},{"en":"hate","zh":"讨厌；恨"},{"en":"admire","zh":"钦佩；赞赏"},{"en":"prefer","zh":"更喜欢；宁愿"},{"en":"regret","zh":"后悔；遗憾"},{"en":"encourage","zh":"鼓励；激励"},{"en":"support","zh":"支持；支撑"},{"en":"praise","zh":"表扬；赞扬"},{"en":"blame","zh":"责备；归咎"},{"en":"forgive","zh":"原谅；宽恕"},{"en":"apologize","zh":"道歉"},{"en":"satisfy","zh":"使满意；满足"},{"en":"comfort","zh":"安慰；舒适"},{"en":"disappoint","zh":"使失望"},{"en":"inspire","zh":"激励；鼓舞"},{"en":"move","zh":"感动；移动"},{"en":"surprise","zh":"使惊讶"},{"en":"worry","zh":"担心；发愁"},{"en":"care","zh":"关心；在乎"},{"en":"prepare","zh":"准备；预备"},{"en":"provide","zh":"提供；供应"},{"en":"protect","zh":"保护；防护"},{"en":"share","zh":"分享；分担"},{"en":"assist","zh":"协助；帮助"},{"en":"improve","zh":"改善；提高"},{"en":"achieve","zh":"实现；达到"},{"en":"manage","zh":"设法做成；管理"},{"en":"fail","zh":"失败；未能"},{"en":"succeed","zh":"成功；继承"},{"en":"continue","zh":"继续；持续"},{"en":"finish","zh":"完成；结束"},{"en":"develop","zh":"发展；开发"},{"en":"prevent","zh":"阻止；防止"},{"en":"offer","zh":"提供；主动"},{"en":"require","zh":"需要；要求"},{"en":"allow","zh":"允许；准许"},{"en":"invite","zh":"邀请；招待"},{"en":"promise","zh":"承诺；答应"},{"en":"volunteer","zh":"自愿；志愿"},{"en":"communicate","zh":"交流；沟通"},{"en":"increase","zh":"增加；增长"},{"en":"decrease","zh":"减少；下降"},{"en":"produce","zh":"生产；产生"},{"en":"grow","zh":"生长；变得"},{"en":"change","zh":"改变；变化"},{"en":"become","zh":"变成；成为"},{"en":"keep","zh":"保持；保留"},{"en":"remain","zh":"保持；剩余"},{"en":"appear","zh":"出现；似乎"},{"en":"disappear","zh":"消失；消散"},{"en":"courage","zh":"勇气；胆量"},{"en":"confidence","zh":"信心；信任"},{"en":"kindness","zh":"善良；善意"},{"en":"pride","zh":"自豪；骄傲"},{"en":"patience","zh":"耐心；忍耐"},{"en":"friendship","zh":"友谊；友情"},{"en":"effort","zh":"努力；成就"},{"en":"success","zh":"成功；胜利"},{"en":"failure","zh":"失败；失败者"},{"en":"difference","zh":"差异；不同"},{"en":"chance","zh":"机会；可能性"},{"en":"choice","zh":"选择；抉择"},{"en":"advice","zh":"建议（不可数）"},{"en":"mistake","zh":"错误；过失"},{"en":"trouble","zh":"麻烦；困难"},{"en":"problem","zh":"问题；难题"},{"en":"difficulty","zh":"困难；困境"},{"en":"memory","zh":"回忆；记忆"},{"en":"habit","zh":"习惯；习性"},{"en":"spirit","zh":"精神；灵魂"},{"en":"warmth","zh":"温暖；温情"},{"en":"fear","zh":"恐惧；害怕"},{"en":"shame","zh":"羞愧；羞耻"},{"en":"respect","zh":"尊重；尊敬"},{"en":"truth","zh":"真相；事实"},{"en":"secret","zh":"秘密；秘诀"},{"en":"lesson","zh":"教训；课程"},{"en":"progress","zh":"进步（不可数）"},{"en":"situation","zh":"处境；形势"},{"en":"competition","zh":"比赛；竞争"},{"en":"meeting","zh":"会议；聚会"},{"en":"trip","zh":"旅行；旅程"},{"en":"party","zh":"聚会；派对"},{"en":"exam / test","zh":"考试；测试"},{"en":"activity","zh":"活动；活跃"},{"en":"experience","zh":"经验；经历"},{"en":"delighted","zh":"高兴的；愉快的"},{"en":"confused","zh":"困惑的；迷茫的"},{"en":"excited","zh":"兴奋的；激动的"},{"en":"nervous","zh":"紧张的；焦虑的"},{"en":"worried","zh":"担心的；发愁的"},{"en":"proud","zh":"自豪的；骄傲的"},{"en":"confident","zh":"自信的；有把握的"},{"en":"patient","zh":"耐心的；忍耐的"},{"en":"brave","zh":"勇敢的；无畏的"},{"en":"honest","zh":"诚实的；正直的"},{"en":"friendly","zh":"友好的；亲切的"},{"en":"creative","zh":"有创造力的"},{"en":"independent","zh":"独立的；自主的"},{"en":"responsible","zh":"负责任的"},{"en":"optimistic","zh":"乐观的；乐观向上的"},{"en":"grateful","zh":"感激的；感谢的"},{"en":"satisfied","zh":"满意的；满足的"},{"en":"disappointed","zh":"失望的；沮丧的"},{"en":"upset","zh":"沮丧的；心烦的"},{"en":"annoyed","zh":"恼怒的；生气的"},{"en":"afraid","zh":"害怕的；担心的"},{"en":"lonely","zh":"孤独的；寂寞的"},{"en":"ashamed","zh":"羞愧的；惭愧的"},{"en":"relaxed","zh":"放松的；自在的"},{"en":"bored","zh":"无聊的；厌烦的"},{"en":"hopeful","zh":"有希望的"},{"en":"thankful","zh":"感激的；欣慰的"},{"en":"curious","zh":"好奇的；求知欲强的"},{"en":"important","zh":"重要的；关键的"},{"en":"necessary","zh":"必要的；必需的"},{"en":"difficult","zh":"困难的；复杂的"},{"en":"suitable","zh":"合适的；适当的"},{"en":"special","zh":"特别的；特殊的"},{"en":"common","zh":"普通的；常见的"},{"en":"different","zh":"不同的；有区别的"},{"en":"same","zh":"相同的；同样的"},{"en":"valuable","zh":"有价值的；贵重的"},{"en":"harmful","zh":"有害的"},{"en":"excellent","zh":"优秀的；极好的"},{"en":"pleasant","zh":"愉快的；舒适的"},{"en":"healthy","zh":"健康的；有益的"},{"en":"dangerous","zh":"危险的；有害的"},{"en":"successful","zh":"成功的；有成就的"},{"en":"attractive","zh":"有吸引力的"},{"en":"interesting","zh":"有趣的；迷人的"},{"en":"wonderful","zh":"精彩的；极好的"}],"zhongkao3":[{"en":"purpose","zh":"目的"},{"en":"author","zh":"作者"},{"en":"passage","zh":"文章"},{"en":"provide","zh":"提供"},{"en":"responsibility","zh":"责任"},{"en":"task","zh":"任务"},{"en":"risk","zh":"风险"},{"en":"reason","zh":"原因，理由"},{"en":"explain","zh":"解释"},{"en":"introduce","zh":"介绍"},{"en":"probably","zh":"可能"},{"en":"possible","zh":"可能的"},{"en":"impossible","zh":"不可能"},{"en":"scientist","zh":"科学家"},{"en":"poster","zh":"海报"},{"en":"reporter","zh":"记者"},{"en":"except","zh":"除了"},{"en":"expect","zh":"期待"},{"en":"explore","zh":"探索"},{"en":"research","zh":"研究"},{"en":"search","zh":"搜索"},{"en":"survey","zh":"调查"},{"en":"study","zh":"研究"},{"en":"show","zh":"表明"},{"en":"discover","zh":"发现"},{"en":"infer","zh":"推断"},{"en":"prefer","zh":"更喜欢"},{"en":"information","zh":"信息"},{"en":"experience","zh":"经历"},{"en":"local","zh":"当地的"},{"en":"happen","zh":"发生"},{"en":"including","zh":"包括"},{"en":"describe","zh":"描述"},{"en":"communication","zh":"沟通"},{"en":"recognize","zh":"辨认"},{"en":"community","zh":"社区"},{"en":"direction","zh":"方向"},{"en":"physical","zh":"身体的"},{"en":"mental","zh":"精神的"},{"en":"predict","zh":"预测"},{"en":"pretend","zh":"假装"},{"en":"result","zh":"结果"},{"en":"method","zh":"方法"},{"en":"intention","zh":"意图"},{"en":"connect","zh":"连接"},{"en":"mention","zh":"提及"},{"en":"chance","zh":"机会"},{"en":"challenge","zh":"挑战"},{"en":"choice","zh":"选择"},{"en":"choose","zh":"选择"},{"en":"volunteer","zh":"志愿者"},{"en":"activity","zh":"活动"},{"en":"traditional","zh":"传统的"},{"en":"culture","zh":"文化"},{"en":"ancient","zh":"古代的"},{"en":"modern","zh":"现代的"},{"en":"calendar","zh":"日历"},{"en":"environment","zh":"环境"},{"en":"protect","zh":"保护"},{"en":"prevent","zh":"阻止"},{"en":"proper","zh":"合适的"},{"en":"support","zh":"支持"},{"en":"necessary","zh":"必要的"},{"en":"stress","zh":"压力"},{"en":"meanwhile","zh":"与此同时"},{"en":"pride","zh":"骄傲"},{"en":"pity","zh":"可惜"},{"en":"position","zh":"位置"},{"en":"fact","zh":"事实"},{"en":"spirit","zh":"精神"},{"en":"truth","zh":"真相"},{"en":"tourist","zh":"游客"},{"en":"campus","zh":"校园"},{"en":"gratitude","zh":"感激"},{"en":"determination","zh":"决心"},{"en":"embarrassment","zh":"尴尬"},{"en":"failure","zh":"失败"},{"en":"process","zh":"过程"},{"en":"cooperation","zh":"合作"},{"en":"invitation","zh":"邀请"},{"en":"budget","zh":"预算"},{"en":"material","zh":"材料"},{"en":"language","zh":"语言"},{"en":"knowledge","zh":"知识"},{"en":"advantage","zh":"有利条件"},{"en":"happiness","zh":"幸福"},{"en":"private","zh":"私人的"},{"en":"public","zh":"公共的"},{"en":"personal","zh":"个人的"},{"en":"signal","zh":"信号"},{"en":"pressure","zh":"压力"},{"en":"problem","zh":"问题"},{"en":"situation","zh":"情况"},{"en":"condition","zh":"状况"},{"en":"location","zh":"位置"},{"en":"influence","zh":"影响"},{"en":"honesty","zh":"真诚"},{"en":"afford","zh":"负担得起"},{"en":"observe","zh":"观察"},{"en":"determine","zh":"决定"},{"en":"recommend","zh":"推荐"},{"en":"prove","zh":"证明"},{"en":"doubt","zh":"怀疑"},{"en":"collect","zh":"收集"},{"en":"wonder","zh":"想知道"},{"en":"cancel","zh":"取消"},{"en":"imagine","zh":"想象"},{"en":"trust","zh":"信任"},{"en":"remember","zh":"记得"},{"en":"continue","zh":"继续"},{"en":"increase","zh":"增加"},{"en":"decrease","zh":"减少"},{"en":"shout","zh":"叫喊"},{"en":"compare","zh":"比较"},{"en":"complain","zh":"抱怨"},{"en":"compete","zh":"竞争"},{"en":"complete","zh":"完成"},{"en":"share","zh":"分享"},{"en":"spread","zh":"传播"},{"en":"encourage","zh":"鼓励"},{"en":"express","zh":"表达"},{"en":"notice","zh":"注意到"},{"en":"realize","zh":"意识到"},{"en":"promise","zh":"承诺"},{"en":"regret","zh":"后悔"},{"en":"deserve","zh":"值得"},{"en":"design","zh":"设计"},{"en":"avoid","zh":"避免"},{"en":"invent","zh":"发明"},{"en":"refuse","zh":"拒绝"},{"en":"solve","zh":"解决"},{"en":"suffer","zh":"遭受"},{"en":"punish","zh":"惩罚"},{"en":"depend","zh":"依靠"},{"en":"separate","zh":"分开"},{"en":"awkward","zh":"尴尬的"},{"en":"educational","zh":"有教育意义的"},{"en":"wonderful","zh":"奇妙的"},{"en":"special","zh":"特别的"},{"en":"disappointed","zh":"失望的"},{"en":"crowded","zh":"拥挤的"},{"en":"strict","zh":"严格的"},{"en":"correct","zh":"正确的"},{"en":"negative","zh":"消极的"},{"en":"positive","zh":"积极的"},{"en":"simple","zh":"简单的"},{"en":"similar","zh":"相似的"},{"en":"familiar","zh":"熟悉的"},{"en":"polite","zh":"有礼貌的"},{"en":"anxious","zh":"焦虑的"},{"en":"nervous","zh":"紧张的"},{"en":"curious","zh":"好奇的"},{"en":"generous","zh":"慷慨的"},{"en":"satisfied","zh":"满意的"},{"en":"pleased","zh":"高兴的"},{"en":"confused","zh":"困惑的"},{"en":"frightened","zh":"害怕的"},{"en":"valuable","zh":"有价值的"},{"en":"meaningful","zh":"有意义的"},{"en":"meaningless","zh":"无意义的"},{"en":"rapid","zh":"迅速的"},{"en":"otherwise","zh":"否则"},{"en":"eventually","zh":"最终地"},{"en":"entirely","zh":"完全地"},{"en":"certainly","zh":"肯定地"},{"en":"hardly","zh":"几乎不"},{"en":"instead","zh":"相反"},{"en":"completely","zh":"完全地"},{"en":"immediately","zh":"立即"},{"en":"extremely","zh":"极其"},{"en":"gradually","zh":"逐渐地"}],"gaoyi":[{"en":"understand","zh":"理解；明白"},{"en":"remember","zh":"记得；回忆起"},{"en":"forget","zh":"忘记；遗忘"},{"en":"learn","zh":"学习；学会"},{"en":"know","zh":"知道；了解"},{"en":"think","zh":"认为；思考"},{"en":"believe","zh":"相信；认为"},{"en":"imagine","zh":"想象；设想"},{"en":"suppose","zh":"认为；假设"},{"en":"realize","zh":"意识到；实现"},{"en":"recognize","zh":"认出；承认"},{"en":"notice","zh":"注意到；察觉"},{"en":"find","zh":"找到；发现"},{"en":"appreciate","zh":"欣赏；感激；领会"},{"en":"inspire","zh":"激励；鼓舞"},{"en":"motivate","zh":"促使；激发"},{"en":"blame","zh":"责备；归咎于"},{"en":"regret","zh":"后悔；遗憾"},{"en":"comfort","zh":"安慰；舒适"},{"en":"satisfy","zh":"使满意；满足"},{"en":"admire","zh":"钦佩；欣赏"},{"en":"apologize","zh":"道歉"},{"en":"bother","zh":"打扰；麻烦"},{"en":"complain","zh":"抱怨；投诉"},{"en":"congratulate","zh":"祝贺"},{"en":"deserve","zh":"值得；应得"},{"en":"acquire","zh":"获得；习得"},{"en":"adopt","zh":"采纳；收养"},{"en":"avoid","zh":"避免；避开"},{"en":"claim","zh":"声称；夺去"},{"en":"contribute","zh":"贡献；促成"},{"en":"expose","zh":"暴露；接触"},{"en":"guarantee","zh":"保证；担保"},{"en":"obtain","zh":"获得；得到"},{"en":"participate","zh":"参加；参与"},{"en":"promote","zh":"促进；提升"},{"en":"remove","zh":"移开；去除"},{"en":"strengthen","zh":"加强；巩固"},{"en":"decline","zh":"下降；婉拒"},{"en":"improve","zh":"改善；提高"},{"en":"recover","zh":"恢复；痊愈"},{"en":"transform","zh":"转变；改造"},{"en":"emerge","zh":"出现；浮现"},{"en":"shift","zh":"转移；转变"},{"en":"vary","zh":"变化；不同"},{"en":"fade","zh":"逐渐消失；褪色"},{"en":"switch","zh":"转换；切换"},{"en":"withdraw","zh":"撤回；退出"},{"en":"expand","zh":"扩大；膨胀"},{"en":"replace","zh":"代替；取代"},{"en":"attitude","zh":"态度；看法"},{"en":"challenge","zh":"挑战；质疑"},{"en":"consequence","zh":"后果；结果"},{"en":"courage","zh":"勇气；胆量"},{"en":"determination","zh":"决心；果断"},{"en":"effort","zh":"努力；成就"},{"en":"expectation","zh":"期待；预期"},{"en":"impression","zh":"印象；效果"},{"en":"independence","zh":"独立；自主"},{"en":"loyalty","zh":"忠诚；忠心"},{"en":"potential","zh":"潜能；潜力"},{"en":"sympathy","zh":"同情；赞同"},{"en":"pride","zh":"自豪；骄傲"},{"en":"faith","zh":"信任；信念"},{"en":"relief","zh":"宽慰；减轻"},{"en":"gratitude","zh":"感激；感谢"},{"en":"passion","zh":"热情；激情"},{"en":"kindness","zh":"善意；仁慈"},{"en":"patience","zh":"耐心；忍耐"},{"en":"curiosity","zh":"好奇；好奇心"},{"en":"confidence","zh":"信心；信任"},{"en":"inspiration","zh":"灵感；鼓舞"},{"en":"motivation","zh":"动力；积极性"},{"en":"opportunity","zh":"机会；时机"},{"en":"achievement","zh":"成就；完成"},{"en":"contribution","zh":"贡献；捐献"},{"en":"failure","zh":"失败；失败者"},{"en":"success","zh":"成功；胜利"},{"en":"strength","zh":"力量；长处"},{"en":"quality","zh":"质量；品质"},{"en":"protection","zh":"保护；防卫"},{"en":"desire","zh":"愿望；渴望"},{"en":"pressure","zh":"压力；压迫"},{"en":"ambition","zh":"抱负；野心"},{"en":"hesitation","zh":"犹豫；迟疑"},{"en":"guidance","zh":"指导；引导"},{"en":"appearance","zh":"出现；外貌"},{"en":"target","zh":"目标；靶子"},{"en":"career","zh":"事业；生涯"},{"en":"requirement","zh":"要求；必要条件"},{"en":"situation","zh":"处境；形势"},{"en":"occasion","zh":"场合；时机"},{"en":"competition","zh":"比赛；竞争"},{"en":"debate","zh":"辩论；争论"},{"en":"journey","zh":"旅程；旅行"},{"en":"speech","zh":"演讲；言语"},{"en":"emergency","zh":"紧急情况；突发事件"},{"en":"incident","zh":"事件；事变"},{"en":"control","zh":"控制；管理"},{"en":"knowledge","zh":"知识；学问"},{"en":"anxious","zh":"焦虑的；渴望的"},{"en":"ashamed","zh":"羞愧的；惭愧的"},{"en":"awkward","zh":"尴尬的；笨拙的"},{"en":"cautious","zh":"谨慎的；小心的"},{"en":"confident","zh":"自信的；有把握的"},{"en":"considerate","zh":"体贴的；考虑周到的"},{"en":"delighted","zh":"欣喜的；高兴的"},{"en":"depressed","zh":"沮丧的；萧条的"},{"en":"desperate","zh":"绝望的；拼命的"},{"en":"determined","zh":"坚定的；坚决的"},{"en":"diligent","zh":"勤奋的；用功的"},{"en":"embarrassed","zh":"尴尬的；窘迫的"},{"en":"grateful","zh":"感激的；感谢的"},{"en":"hopeful","zh":"有希望的"},{"en":"generous","zh":"慷慨的；大方的"},{"en":"hesitant","zh":"犹豫的；迟疑的"},{"en":"humble","zh":"谦逊的；卑微的"},{"en":"impatient","zh":"不耐烦的；急躁的"},{"en":"jealous","zh":"嫉妒的；羡慕的"},{"en":"lonely","zh":"孤独的；寂寞的"},{"en":"optimistic","zh":"乐观的"},{"en":"proud","zh":"骄傲的；自豪的"},{"en":"relieved","zh":"宽慰的；如释重负的"},{"en":"skeptical","zh":"怀疑的"},{"en":"thankful","zh":"感激的；欣慰的"},{"en":"accurate","zh":"准确的；精确的"},{"en":"appealing","zh":"有感染力的；吸引人的"},{"en":"available","zh":"可获得的；有空的"},{"en":"beneficial","zh":"有益的；有利的"},{"en":"challenging","zh":"有挑战的；挑战性的"},{"en":"efficient","zh":"高效的；有效率的"},{"en":"essential","zh":"必不可少的；本质的"},{"en":"flexible","zh":"灵活的；柔韧的"},{"en":"impressive","zh":"印象深刻的；感人的"},{"en":"incredible","zh":"难以置信的；惊人的"},{"en":"mature","zh":"成熟的；成年人的"},{"en":"modest","zh":"谦虚的；适度的"},{"en":"obvious","zh":"明显的；显而易见的"},{"en":"precious","zh":"珍贵的；宝贵的"},{"en":"reliable","zh":"可靠的；可信赖的"},{"en":"severe","zh":"严重的；严厉的"},{"en":"significant","zh":"显著的；重要的"},{"en":"steady","zh":"稳定的；稳固的"},{"en":"artificial","zh":"人造的；虚假的"},{"en":"decent","zh":"体面的；像样的"},{"en":"durable","zh":"耐用的；持久的"},{"en":"fragile","zh":"易碎的；脆弱的"},{"en":"permanent","zh":"永久的；永恒的"},{"en":"urgent","zh":"紧急的；急迫的"},{"en":"original","zh":"原始的；最初的"}],"gaokao":[{"en":"assume","zh":"假定；认为"},{"en":"figure out","zh":"弄明白；想出"},{"en":"confirm","zh":"证实；确认"},{"en":"acknowledge","zh":"承认；致谢"},{"en":"convince","zh":"使信服；说服"},{"en":"distinguish","zh":"区分；辨别"},{"en":"identify","zh":"识别；认出"},{"en":"predict","zh":"预测；预言"},{"en":"imply","zh":"暗示；意味着"},{"en":"recall","zh":"回忆起；召回"},{"en":"indicate","zh":"表明；指示"},{"en":"suspect","zh":"怀疑；猜想"},{"en":"realize","zh":"意识到；实现"},{"en":"reflect","zh":"反思；反映"},{"en":"recognize","zh":"认出；承认"},{"en":"demonstrate","zh":"证明；演示"},{"en":"suggest","zh":"建议；暗示；使人想起"},{"en":"investigate","zh":"调查；研究"},{"en":"suppose","zh":"认为；假设"},{"en":"discover","zh":"发现；发觉"},{"en":"appreciate","zh":"欣赏；感激；领会"},{"en":"apologize","zh":"道歉"},{"en":"inspire","zh":"激励；鼓舞"},{"en":"bother","zh":"打扰；麻烦"},{"en":"motivate","zh":"促使；激发"},{"en":"complain","zh":"抱怨；投诉"},{"en":"blame","zh":"责备；归咎于"},{"en":"congratulate","zh":"祝贺"},{"en":"regret","zh":"后悔；遗憾"},{"en":"deny","zh":"否认；拒绝"},{"en":"comfort","zh":"安慰；舒适"},{"en":"deserve","zh":"值得；应得"},{"en":"encourage","zh":"鼓励；激励"},{"en":"forgive","zh":"原谅；宽恕"},{"en":"disappoint","zh":"使失望"},{"en":"sympathize","zh":"同情"},{"en":"satisfy","zh":"使满意；满足"},{"en":"envy / jealous","zh":"嫉妒；羡慕"},{"en":"admire","zh":"钦佩；欣赏"},{"en":"hesitate","zh":"犹豫；迟疑"},{"en":"acquire","zh":"获得；习得"},{"en":"respond","zh":"回应；响应"},{"en":"adopt","zh":"采纳；收养"},{"en":"solve / settle","zh":"解决；处理"},{"en":"avoid","zh":"避免；避开"},{"en":"support","zh":"支持；支撑"},{"en":"claim","zh":"声称；夺去（生命）"},{"en":"maintain","zh":"维持；保养"},{"en":"contribute","zh":"贡献；促成"},{"en":"cancel","zh":"取消；废除"},{"en":"expose","zh":"暴露；接触"},{"en":"distribute","zh":"分发；分配"},{"en":"guarantee","zh":"保证；担保"},{"en":"donate","zh":"捐赠；捐献"},{"en":"obtain","zh":"获得；得到"},{"en":"preserve","zh":"保护；保存"},{"en":"participate","zh":"参加；参与"},{"en":"restore","zh":"恢复；修复"},{"en":"promote","zh":"促进；提升"},{"en":"seize","zh":"抓住；夺取"},{"en":"remove","zh":"移开；去除"},{"en":"witness","zh":"目击；见证"},{"en":"strengthen","zh":"加强；巩固"},{"en":"encounter","zh":"遭遇；邂逅"},{"en":"tolerate / stand","zh":"忍受；容忍"},{"en":"deliver","zh":"递送；发表"},{"en":"accompany","zh":"陪伴；伴随"},{"en":"perform","zh":"执行；表演"},{"en":"abandon","zh":"遗弃；放弃"},{"en":"extend","zh":"延伸；扩展"},{"en":"achieve","zh":"实现；达到"},{"en":"expand","zh":"扩大；膨胀"},{"en":"adapt","zh":"适应；改编"},{"en":"reduce","zh":"减少；降低"},{"en":"offer","zh":"提供；出价"},{"en":"replace","zh":"代替；取代"},{"en":"provide / supply","zh":"提供；供应"},{"en":"observe","zh":"观察；遵守"},{"en":"decline","zh":"下降；婉拒"},{"en":"shift","zh":"转移；转变"},{"en":"improve","zh":"改善；提高"},{"en":"vary","zh":"变化；不同"},{"en":"recover","zh":"恢复；痊愈"},{"en":"fade","zh":"逐渐消失；褪色"},{"en":"transform","zh":"转变；改造"},{"en":"switch","zh":"转换；切换"},{"en":"emerge","zh":"出现；浮现"},{"en":"withdraw","zh":"撤回；退出"},{"en":"attitude","zh":"态度；看法"},{"en":"motivation","zh":"动力；积极性"},{"en":"barrier","zh":"障碍；屏障"},{"en":"opportunity","zh":"机会；时机"},{"en":"benefit","zh":"好处；利益"},{"en":"achievement","zh":"成就；完成"},{"en":"challenge","zh":"挑战；质疑"},{"en":"contribution","zh":"贡献；捐献"},{"en":"consequence","zh":"后果；结果"},{"en":"failure","zh":"失败；失败者"},{"en":"courage","zh":"勇气；胆量"},{"en":"success","zh":"成功；胜利"},{"en":"determination","zh":"决心；果断"},{"en":"strength","zh":"力量；长处"},{"en":"effort","zh":"努力；成就"},{"en":"quality","zh":"质量；品质"},{"en":"expectation","zh":"期待；预期"},{"en":"protection","zh":"保护；防卫"},{"en":"impression","zh":"印象；效果"},{"en":"desire","zh":"愿望；渴望"},{"en":"independence","zh":"独立；自主"},{"en":"pressure","zh":"压力；压迫"},{"en":"loyalty","zh":"忠诚；忠心"},{"en":"ambition","zh":"抱负；野心"},{"en":"potential","zh":"潜能；潜力"},{"en":"hesitation","zh":"犹豫；迟疑"},{"en":"sympathy","zh":"同情；赞同"},{"en":"guidance","zh":"指导；引导"},{"en":"pride","zh":"自豪；骄傲"},{"en":"appearance","zh":"出现；外貌"},{"en":"faith","zh":"信任；信念"},{"en":"target","zh":"目标；靶子"},{"en":"relief","zh":"宽慰；减轻"},{"en":"career","zh":"事业；生涯"},{"en":"gratitude","zh":"感激；感谢"},{"en":"requirement","zh":"要求；必要条件"},{"en":"passion","zh":"热情；激情"},{"en":"principle","zh":"原则；原理"},{"en":"kindness","zh":"善意；仁慈"},{"en":"conclusion","zh":"结论；结束"},{"en":"patience","zh":"耐心；忍耐"},{"en":"expression","zh":"表达；表情"},{"en":"curiosity","zh":"好奇；好奇心"},{"en":"relationship","zh":"关系；关联"},{"en":"confidence","zh":"信心；信任"},{"en":"cooperation","zh":"合作；协作"},{"en":"inspiration","zh":"灵感；鼓舞"},{"en":"situation","zh":"处境；形势"},{"en":"speech","zh":"演讲；言语"},{"en":"occasion","zh":"场合；时机"},{"en":"emergency","zh":"紧急情况；突发事件"},{"en":"competition","zh":"比赛；竞争"},{"en":"incident","zh":"事件；事变"},{"en":"debate","zh":"辩论；争论"},{"en":"control","zh":"控制；管理"},{"en":"journey","zh":"旅程；旅行"},{"en":"anxious","zh":"焦虑的；渴望的"},{"en":"impatient","zh":"不耐烦的；急躁的"},{"en":"ashamed","zh":"羞愧的；惭愧的"},{"en":"jealous","zh":"嫉妒的；羡慕的"},{"en":"awkward","zh":"尴尬的；笨拙的"},{"en":"lonely","zh":"孤独的；寂寞的"},{"en":"cautious","zh":"谨慎的；小心的"},{"en":"optimistic","zh":"乐观的"},{"en":"confident","zh":"自信的；有把握的"},{"en":"puzzled","zh":"困惑的；迷惑的"},{"en":"considerate","zh":"体贴的；考虑周到的"},{"en":"reluctant","zh":"不情愿的；勉强的"},{"en":"delighted","zh":"欣喜的；高兴的"},{"en":"skeptical","zh":"怀疑的；多疑的"},{"en":"depressed","zh":"沮丧的；萧条的"},{"en":"sympathetic","zh":"同情的；赞同的"},{"en":"desperate","zh":"绝望的；拼命的"},{"en":"thankful","zh":"感激的；欣慰的"},{"en":"determined","zh":"坚定的；坚决的"},{"en":"thoughtful","zh":"周到的；深思的"},{"en":"diligent","zh":"勤奋的；用功的"},{"en":"tolerant","zh":"宽容的；容忍的"},{"en":"embarrassed","zh":"尴尬的；窘迫的"},{"en":"uneasy","zh":"不安的；不自在的"},{"en":"grateful","zh":"感激的；感谢的"},{"en":"willing","zh":"乐意的；自愿的"},{"en":"hopeful","zh":"有希望的；满怀希望的"},{"en":"eager","zh":"渴望的；热切的"},{"en":"generous","zh":"慷慨的；大方的"},{"en":"stubborn","zh":"固执的；顽固的"},{"en":"hesitant","zh":"犹豫的；迟疑的"},{"en":"stressful","zh":"有压力的；紧张的"},{"en":"humble","zh":"谦逊的；卑微的"},{"en":"exhausted","zh":"筋疲力尽的"},{"en":"accurate","zh":"准确的；精确的"},{"en":"precious","zh":"珍贵的；宝贵的"},{"en":"appealing","zh":"有感染力的；吸引人的"},{"en":"reliable","zh":"可靠的；可信赖的"},{"en":"available","zh":"可获得的；有空的"},{"en":"severe","zh":"严重的；严厉的"},{"en":"beneficial","zh":"有益的；有利的"},{"en":"significant","zh":"显著的；重要的"},{"en":"challenging","zh":"有挑战的；挑战性的"},{"en":"steady","zh":"稳定的；稳固的"},{"en":"efficient","zh":"高效的；有效率的"},{"en":"artificial","zh":"人造的；虚假的"},{"en":"essential","zh":"必不可少的；本质的"},{"en":"decent","zh":"体面的；像样的"},{"en":"flexible","zh":"灵活的；柔韧的"},{"en":"durable","zh":"耐用的；持久的"},{"en":"impressive","zh":"印象深刻的；感人的"},{"en":"fragile","zh":"易碎的；脆弱的"},{"en":"incredible","zh":"难以置信的；惊人的"},{"en":"permanent","zh":"永久的；永恒的"},{"en":"mature","zh":"成熟的；成年人的"},{"en":"urgent","zh":"紧急的；急迫的"},{"en":"modest","zh":"谦虚的；适度的"},{"en":"original","zh":"原始的；最初的"},{"en":"obvious","zh":"明显的；显而易见的"},{"en":"eventually","zh":"最终；终于"},{"en":"occasionally","zh":"偶尔；间或"},{"en":"gradually","zh":"逐渐地；逐步地"},{"en":"previously","zh":"先前；以前"},{"en":"initially","zh":"最初；起初"},{"en":"suddenly","zh":"突然；忽然"},{"en":"meanwhile","zh":"与此同时；在此期间"},{"en":"ultimately","zh":"最终；根本上"},{"en":"absolutely","zh":"绝对地；完全地"},{"en":"nearly","zh":"几乎；差不多"},{"en":"completely","zh":"完全地；彻底地"},{"en":"partly","zh":"部分地；在一定程度上"},{"en":"entirely","zh":"完全地；全部地"},{"en":"particularly","zh":"尤其；特别"},{"en":"extremely","zh":"极其；非常"},{"en":"rather","zh":"相当；有点儿"},{"en":"hardly","zh":"几乎不；刚刚"},{"en":"relatively","zh":"相对地；比较地"},{"en":"highly","zh":"高度地；非常"},{"en":"slightly","zh":"稍微；略微"},{"en":"increasingly","zh":"越来越多地；日益"},{"en":"thoroughly","zh":"彻底地；完全地"},{"en":"largely","zh":"主要地；大部分"},{"en":"actually","zh":"事实上；实际上"},{"en":"merely","zh":"仅仅；只不过"},{"en":"anxiously","zh":"焦虑地；担忧地"},{"en":"gratefully","zh":"感激地；感谢地"},{"en":"carefully","zh":"小心地；仔细地"},{"en":"reluctantly","zh":"不情愿地；勉强地"},{"en":"eagerly","zh":"渴望地；热切地"},{"en":"secretly","zh":"秘密地；私下地"},{"en":"enthusiastically","zh":"热情地；热烈地"},{"en":"surprisingly","zh":"令人惊讶地；出奇地"},{"en":"firmly","zh":"坚定地；稳固地"},{"en":"unexpectedly","zh":"出乎意料地；意外地"},{"en":"gracefully","zh":"优雅地；得体地"},{"en":"deliberately","zh":"故意地；蓄意地"},{"en":"consequently","zh":"因此；结果"},{"en":"subsequently","zh":"随后；后来"},{"en":"otherwise","zh":"否则；不然"},{"en":"nevertheless","zh":"然而；不过"},{"en":"break down","zh":"出故障；崩溃；分解"},{"en":"break off","zh":"中断；折断"},{"en":"break out","zh":"（战争/火灾/疫情）爆发"},{"en":"break through","zh":"突破；冲破"},{"en":"break up","zh":"分手；解散；放假"},{"en":"break away from","zh":"脱离；摆脱"},{"en":"break in","zh":"闯入；打断"},{"en":"bring about","zh":"导致；引起"},{"en":"bring in","zh":"引入；赚得"},{"en":"bring up","zh":"抚养；提出"},{"en":"bring back","zh":"使回忆起；带回"},{"en":"bring out","zh":"使显现；出版"},{"en":"call for","zh":"需要；呼吁"},{"en":"call at","zh":"拜访某地"},{"en":"call off","zh":"取消"},{"en":"call up","zh":"打电话；召集"},{"en":"call on","zh":"拜访某人；号召"},{"en":"call out","zh":"大声喊；指出"},{"en":"carry out","zh":"执行；实施"},{"en":"carry away","zh":"使失去理智"},{"en":"carry on","zh":"继续；进行"},{"en":"come across","zh":"偶遇；偶然发现"},{"en":"come out","zh":"出版；显现"},{"en":"come up with","zh":"想出；提出"},{"en":"come to","zh":"苏醒；共计；涉及"},{"en":"come about","zh":"发生；产生"},{"en":"come along","zh":"进展；一起来"},{"en":"cut down","zh":"砍倒；削减"},{"en":"cut out","zh":"停止；删去"},{"en":"cut off","zh":"切断；使失联"},{"en":"cut in","zh":"插嘴；超车"},{"en":"get over","zh":"克服；从病中恢复"},{"en":"get away with","zh":"做坏事而不受惩罚"},{"en":"get through","zh":"熬过；完成；接通电话"},{"en":"get down to","zh":"认真对待；开始做"},{"en":"get across","zh":"使被理解"},{"en":"get through to","zh":"与…取得联系"},{"en":"get along/on with","zh":"相处；进展"},{"en":"get used to","zh":"习惯于"},{"en":"give up","zh":"放弃"},{"en":"give off","zh":"散发（光/热/气味）"},{"en":"give in","zh":"屈服；让步"},{"en":"give way to","zh":"让位于；被替代"},{"en":"give out","zh":"分发；耗尽"},{"en":"give birth to","zh":"产生；生下"},{"en":"give away","zh":"赠送；泄露"},{"en":"go through","zh":"经历；仔细检查"},{"en":"go beyond","zh":"超出；超越"},{"en":"go over","zh":"复习；检查"},{"en":"go off","zh":"爆炸；中断；（食物）变质"},{"en":"go against","zh":"违背；违反"},{"en":"hold on","zh":"坚持；别挂断"},{"en":"hold out","zh":"伸出；坚持"},{"en":"hold back","zh":"抑制；阻碍"},{"en":"hold on to","zh":"守住；紧抓"},{"en":"hold up","zh":"举起；延误；抢劫"},{"en":"hang on","zh":"坚持；稍等"},{"en":"hang back","zh":"退缩；犹豫"},{"en":"hang up","zh":"挂断"},{"en":"hang out","zh":"闲逛；逗留"},{"en":"keep up","zh":"保持；跟上"},{"en":"keep out","zh":"不准入内"},{"en":"keep up with","zh":"赶上；不落后"},{"en":"keep to","zh":"遵守；坚持"},{"en":"keep back","zh":"抑制；隐瞒"},{"en":"keep it in mind","zh":"记住"},{"en":"look forward to doing","zh":"期待；盼望"},{"en":"look down on","zh":"轻视；看不起"},{"en":"look into","zh":"调查；研究"},{"en":"look after","zh":"照顾"},{"en":"look up to","zh":"尊敬；敬仰"},{"en":"look over","zh":"检查；查看"},{"en":"make up","zh":"编造；组成；和解；化妆"},{"en":"make a difference","zh":"起作用；有影响"},{"en":"make up for","zh":"弥补；补偿"},{"en":"make it","zh":"成功做到；及时赶到"},{"en":"make out","zh":"辨认；理解"},{"en":"make the most of","zh":"充分利用"},{"en":"make for","zh":"有助于；走向"},{"en":"put off","zh":"推迟；拖延"},{"en":"put aside","zh":"储存；搁置"},{"en":"put up with","zh":"忍受；容忍"},{"en":"put down","zh":"放下；写下；镇压"},{"en":"put forward","zh":"提出；建议"},{"en":"put on","zh":"穿上；上演"},{"en":"put out","zh":"扑灭；出版"},{"en":"run out","zh":"用完（不及物，无被动）"},{"en":"run across","zh":"偶遇；偶然发现"},{"en":"run out of","zh":"用完某物"},{"en":"run after","zh":"追赶；追求"},{"en":"run into","zh":"偶遇；撞上；遭遇困难"},{"en":"run away from","zh":"逃避；逃离"},{"en":"set out to do","zh":"出发；着手做"},{"en":"set aside","zh":"留出；搁置"},{"en":"set about doing","zh":"开始做"},{"en":"set back","zh":"推迟；花费"},{"en":"set off","zh":"出发；引爆"},{"en":"set up","zh":"建立；创办"},{"en":"take up","zh":"开始从事；占据"},{"en":"take over","zh":"接管；接任"},{"en":"take on","zh":"承担；呈现；雇佣"},{"en":"take advantage of","zh":"利用"},{"en":"take off","zh":"起飞；走红；脱下"},{"en":"take effect","zh":"生效"},{"en":"take in","zh":"吸收；理解；欺骗"},{"en":"take a toll","zh":"造成损失"},{"en":"turn out","zh":"结果是；证明是"},{"en":"turn off","zh":"关掉"},{"en":"turn up","zh":"出现；调高"},{"en":"turn on","zh":"打开"},{"en":"turn down","zh":"拒绝；调低"},{"en":"turn in","zh":"上交；交还"},{"en":"turn to","zh":"求助于；转向"},{"en":"turn away","zh":"回绝；拒绝"},{"en":"work out","zh":"解决；算出；锻炼；奏效"},{"en":"work through","zh":"逐步克服"},{"en":"work on","zh":"从事；影响"},{"en":"pick up","zh":"捡起；学会；接人；好转"},{"en":"take part in","zh":"参加"},{"en":"pay off","zh":"奏效；还清"},{"en":"take place","zh":"发生"},{"en":"pull through","zh":"渡过难关"},{"en":"think of / think about","zh":"想到；考虑"},{"en":"push through","zh":"推动通过"},{"en":"try out","zh":"试用；试验"},{"en":"settle down","zh":"安定下来；平静"},{"en":"look forward to","zh":"期待；盼望"},{"en":"lead to","zh":"导致"},{"en":"pay attention to","zh":"注意"},{"en":"contribute to","zh":"有助于；贡献"},{"en":"be used to","zh":"习惯于"},{"en":"respond to","zh":"回应；对…做出反应"},{"en":"stick to","zh":"坚持；固守"},{"en":"apply to","zh":"适用于；申请"},{"en":"be committed to","zh":"致力于"},{"en":"accustomed to","zh":"习惯于"},{"en":"be opposed to","zh":"反对"},{"en":"see to","zh":"负责处理"},{"en":"object to","zh":"反对"},{"en":"amount to","zh":"相当于；总计"},{"en":"devote…to","zh":"致力于；奉献"},{"en":"come close to","zh":"几乎；接近"},{"en":"aware of","zh":"意识到"},{"en":"serious about","zh":"对…认真"},{"en":"afraid of","zh":"害怕"},{"en":"nervous about","zh":"对…紧张"},{"en":"proud of","zh":"以…为荣"},{"en":"worried about","zh":"担心"},{"en":"fond of","zh":"喜欢"},{"en":"certain of/about","zh":"确定的"},{"en":"responsible for","zh":"对…负责"},{"en":"capable of","zh":"有能力做"},{"en":"satisfied with","zh":"对…满意"},{"en":"accused of","zh":"被指控"},{"en":"similar to","zh":"类似于"},{"en":"guilty of","zh":"有…罪的"},{"en":"different from","zh":"不同于"},{"en":"tired of","zh":"厌倦"},{"en":"connected with","zh":"与…有关"},{"en":"sick of","zh":"厌恶"},{"en":"familiar with","zh":"熟悉"},{"en":"ashamed of","zh":"为…羞耻"},{"en":"interested in","zh":"对…感兴趣"},{"en":"jealous of","zh":"嫉妒"},{"en":"good at","zh":"擅长"},{"en":"independent of","zh":"独立于"},{"en":"angry with (人)/at (事)","zh":"生…的气"},{"en":"addicted to","zh":"沉迷于"},{"en":"strict with (人)/in (事)","zh":"对…严格"},{"en":"committed to","zh":"致力于"},{"en":"patient with","zh":"对…有耐心"},{"en":"opposed to","zh":"反对"},{"en":"cruel to","zh":"对…残忍"},{"en":"vulnerable to","zh":"易受…伤害"},{"en":"kind to","zh":"对…友善"},{"en":"exposed to","zh":"暴露于"},{"en":"polite to","zh":"对…礼貌"},{"en":"short of","zh":"缺乏"},{"en":"rude to","zh":"对…粗鲁"},{"en":"free from/of","zh":"免于"},{"en":"generous with","zh":"对…慷慨"},{"en":"awareness of","zh":"意识"},{"en":"belief in","zh":"相信"},{"en":"effect/influence/impact on","zh":"对…的影响"},{"en":"confusion about","zh":"困惑"},{"en":"attitude/feeling towards/to","zh":"对…的态度/感受"},{"en":"doubt about/of","zh":"怀疑"},{"en":"contribution to","zh":"对…的贡献"},{"en":"respect for","zh":"尊重"},{"en":"access to","zh":"接近；获得"},{"en":"sympathy for(with)","zh":"同情；赞同"},{"en":"response to","zh":"对…的回应"},{"en":"interest in","zh":"兴趣"},{"en":"devotion to","zh":"对…的奉献"},{"en":"satisfaction with","zh":"满意"},{"en":"attitude towards","zh":"对…的态度"},{"en":"success in","zh":"在…方面的成功"},{"en":"approval of","zh":"批准；同意"},{"en":"approach to","zh":"方法；途径"},{"en":"in fact","zh":"事实上"},{"en":"in charge of","zh":"负责"},{"en":"in addition","zh":"此外"},{"en":"in advance","zh":"提前"},{"en":"in particular","zh":"尤其"},{"en":"in detail","zh":"详细地"},{"en":"in general","zh":"一般来说"},{"en":"in essence","zh":"本质上"},{"en":"in order to","zh":"为了"},{"en":"in need of","zh":"需要"},{"en":"in spite of","zh":"尽管"},{"en":"in place of","zh":"代替"},{"en":"in terms of","zh":"就…而言"},{"en":"in return","zh":"作为回报"},{"en":"in response to","zh":"回应"},{"en":"in search of","zh":"寻找"},{"en":"in favor of","zh":"支持"},{"en":"on purpose","zh":"故意"},{"en":"on account of","zh":"由于"},{"en":"on average","zh":"平均"},{"en":"on the point of doing","zh":"正要做"},{"en":"on schedule","zh":"按时"},{"en":"on second thoughts","zh":"再三考虑后"},{"en":"on duty","zh":"值班"},{"en":"on the contrary","zh":"相反"},{"en":"on behalf of","zh":"代表"},{"en":"at first","zh":"起初"},{"en":"at ease","zh":"自在"},{"en":"at last","zh":"终于"},{"en":"at all","zh":"根本(否定)"},{"en":"at least/most","zh":"至少/至多"},{"en":"at any rate","zh":"无论如何"},{"en":"at once","zh":"立刻"},{"en":"at best","zh":"充其量"},{"en":"at present","zh":"目前"},{"en":"at worst","zh":"在最坏情况下"},{"en":"at risk","zh":"处于风险中"},{"en":"by accident/chance","zh":"偶然"},{"en":"by mistake","zh":"错误地"},{"en":"out of breath","zh":"上气不接下气"},{"en":"spare","zh":"空闲的；使免遭、匀出"},{"en":"ground","zh":"地面；理由"},{"en":"address","zh":"地址；处理"},{"en":"handle","zh":"手把；处理"},{"en":"head","zh":"头；前往"},{"en":"count","zh":"数；重要"},{"en":"keep","zh":"保持；遵守"},{"en":"develop","zh":"发展；患上（病）"},{"en":"lay","zh":"放置；下蛋"},{"en":"enter","zh":"进入；报名参加"},{"en":"lie","zh":"躺；说谎"},{"en":"fine","zh":"好的；罚款"},{"en":"make","zh":"制作；弥补"},{"en":"hard","zh":"困难的；努力地"},{"en":"mark","zh":"标记；打分"},{"en":"light","zh":"轻的；点燃"},{"en":"meet","zh":"遇见；满足"},{"en":"low","zh":"低的；消沉的"},{"en":"note","zh":"注意；笔记"},{"en":"present","zh":"目前的；颁发"},{"en":"still","zh":"仍然；静止的"},{"en":"pay","zh":"支付；报酬"},{"en":"work","zh":"工作；奏效"},{"en":"raise","zh":"举起；筹集"},{"en":"worth","zh":"值得；接doing"},{"en":"range","zh":"范围；涉及"},{"en":"air","zh":"空气；传播"},{"en":"rate","zh":"比率；评估"},{"en":"board","zh":"板；上船/飞机"},{"en":"receive","zh":"收到；接待"},{"en":"build","zh":"建造；体质"},{"en":"record","zh":"记录；唱片"},{"en":"catch","zh":"抓住；赶上；感染"},{"en":"remedy","zh":"补救；药物"},{"en":"cover","zh":"覆盖；报道"},{"en":"report","zh":"报告；报道"},{"en":"rescue","zh":"拯救；挽回"},{"en":"drive","zh":"驾驶；驱赶"},{"en":"serve","zh":"服务；上菜"},{"en":"face","zh":"脸；面对"},{"en":"set","zh":"设置；日落"},{"en":"fill","zh":"填满；担任"},{"en":"share","zh":"分享；份额"},{"en":"fit","zh":"适合；安装"},{"en":"sign","zh":"签名；迹象"},{"en":"game","zh":"游戏；猎物"},{"en":"stand","zh":"站；忍受"}],"gaokao191":[{"en":"promising","zh":"有希望的"},{"en":"occur","zh":"出现"},{"en":"survey","zh":"调查"},{"en":"opponent","zh":"对手"},{"en":"estimate","zh":"评估"},{"en":"underestimate","zh":"低估"},{"en":"evaluate","zh":"评价"},{"en":"assessment","zh":"评估"},{"en":"potential","zh":"潜力"},{"en":"principle","zh":"原则"},{"en":"infer","zh":"推断"},{"en":"refer to","zh":"提及；指的是"},{"en":"purpose","zh":"目的"},{"en":"conduct","zh":"实施"},{"en":"statistic","zh":"数据"},{"en":"inform","zh":"通知"},{"en":"ensure","zh":"确保"},{"en":"maintain","zh":"保持"},{"en":"encounter","zh":"遭遇"},{"en":"cooperation","zh":"合作"},{"en":"application","zh":"应用"},{"en":"colleague","zh":"同事"},{"en":"method","zh":"方法"},{"en":"process","zh":"过程"},{"en":"various","zh":"多样的"},{"en":"promote","zh":"促进"},{"en":"equal","zh":"平等的"},{"en":"novel","zh":"新奇的"},{"en":"therefore","zh":"因此"},{"en":"stress","zh":"强调"},{"en":"practical use","zh":"实际用途"},{"en":"budget","zh":"预算"},{"en":"represent","zh":"代表"},{"en":"adjust","zh":"调整"},{"en":"randomly","zh":"随机地"},{"en":"profitable","zh":"有利可图的"},{"en":"evident","zh":"明显的"},{"en":"highlight","zh":"强调"},{"en":"motivate","zh":"激发"},{"en":"beneficial","zh":"有益处的"},{"en":"suitable","zh":"合适的"},{"en":"mention","zh":"提及"},{"en":"illustrate","zh":"阐释"},{"en":"demonstrate","zh":"演示；证明"},{"en":"destination","zh":"目的地"},{"en":"emerge","zh":"浮现"},{"en":"impact","zh":"影响"},{"en":"contribute","zh":"有助于"},{"en":"contribution","zh":"贡献"},{"en":"reveal","zh":"揭露"},{"en":"combine","zh":"结合"},{"en":"combination","zh":"结合"},{"en":"remarkable","zh":"卓越的"},{"en":"increase","zh":"增加"},{"en":"witness","zh":"目击"},{"en":"significant","zh":"重大的"},{"en":"attract","zh":"吸引"},{"en":"familiar","zh":"熟悉的"},{"en":"similar","zh":"相似的"},{"en":"previous","zh":"之前的"},{"en":"inspire","zh":"激发"},{"en":"technique","zh":"技术"},{"en":"exhibition","zh":"展览"},{"en":"participant","zh":"参与者"},{"en":"attempt","zh":"尝试"},{"en":"describe","zh":"描述"},{"en":"original","zh":"起初的"},{"en":"admire","zh":"钦佩"},{"en":"celebrate","zh":"庆祝"},{"en":"compare","zh":"比较"},{"en":"comparison","zh":"比较"},{"en":"emphasize","zh":"强调"},{"en":"replace","zh":"替代"},{"en":"explore","zh":"探险"},{"en":"progress","zh":"进步"},{"en":"track","zh":"追踪"},{"en":"accurate","zh":"精确的"},{"en":"cancel","zh":"取消"},{"en":"investment","zh":"投资"},{"en":"generate","zh":"产生"},{"en":"shift","zh":"转变"},{"en":"individual","zh":"个体"},{"en":"innovation","zh":"创新"},{"en":"entertainment","zh":"娱乐"},{"en":"aspect","zh":"方面"},{"en":"function","zh":"功能"},{"en":"objective","zh":"客观的"},{"en":"competition","zh":"竞争"},{"en":"pursue","zh":"追求"},{"en":"trend","zh":"趋势"},{"en":"essential","zh":"必要的"},{"en":"enhance","zh":"增强"},{"en":"advocate","zh":"提倡"},{"en":"professional","zh":"专业的"},{"en":"communicate","zh":"沟通"},{"en":"tiny","zh":"微小的"},{"en":"adventure","zh":"冒险"},{"en":"establish","zh":"建立"},{"en":"complicated","zh":"复杂的"},{"en":"appeal","zh":"吸引"},{"en":"entire","zh":"整个的"},{"en":"structure","zh":"结构"},{"en":"invest","zh":"投资"},{"en":"equipment","zh":"装备"},{"en":"device","zh":"设备"},{"en":"rare","zh":"罕见的"},{"en":"connection","zh":"联系"},{"en":"severe","zh":"严重的"},{"en":"prospect","zh":"前景"},{"en":"curious","zh":"好奇的"},{"en":"anxious","zh":"焦虑的"},{"en":"intention","zh":"意图"},{"en":"origin","zh":"起源"},{"en":"insight","zh":"洞见"},{"en":"reflect","zh":"反映"},{"en":"appreciate","zh":"欣赏"},{"en":"inner","zh":"内在的"},{"en":"precisely","zh":"精确地"},{"en":"gradually","zh":"逐渐地"},{"en":"community","zh":"社区"},{"en":"opposite","zh":"相反的"},{"en":"typical","zh":"典型的"},{"en":"skeptical","zh":"怀疑的"},{"en":"sensitive","zh":"敏感的"},{"en":"urgent","zh":"紧急的"},{"en":"identify","zh":"辨认"},{"en":"ignore","zh":"忽视"},{"en":"separately","zh":"分开地"},{"en":"temporary","zh":"暂时的"},{"en":"efficiency","zh":"效率"},{"en":"concentrate","zh":"专注于"},{"en":"mainly","zh":"主要地"},{"en":"meaning","zh":"意义"},{"en":"probably","zh":"可能"},{"en":"according","zh":"根据"},{"en":"research","zh":"研究"},{"en":"passage","zh":"文章"},{"en":"paragraph","zh":"段落"},{"en":"opinion","zh":"观点"},{"en":"title","zh":"标题"},{"en":"author","zh":"作者"},{"en":"expect","zh":"期待"},{"en":"reason","zh":"原因"},{"en":"relationship","zh":"关系"},{"en":"attitude","zh":"态度"},{"en":"science","zh":"科学"},{"en":"scientist","zh":"科学家"},{"en":"technology","zh":"技术"},{"en":"challenge","zh":"挑战"},{"en":"discovery","zh":"发现"},{"en":"limit","zh":"限制"},{"en":"continue","zh":"继续"},{"en":"consider","zh":"考虑"},{"en":"complete","zh":"完成"},{"en":"prepare","zh":"准备"},{"en":"design","zh":"设计"},{"en":"discuss","zh":"讨论"},{"en":"express","zh":"表达"},{"en":"disappoint","zh":"使失望"},{"en":"recommend","zh":"推荐"},{"en":"promise","zh":"承诺"},{"en":"imagine","zh":"想象"},{"en":"embarrassed","zh":"尴尬的"},{"en":"satisfied","zh":"满意的"},{"en":"cautious","zh":"小心的"},{"en":"complex","zh":"复杂的"},{"en":"confident","zh":"自信的"},{"en":"immediately","zh":"立即"},{"en":"especially","zh":"尤其"},{"en":"eventually","zh":"最终"},{"en":"suddenly","zh":"突然"},{"en":"consequently","zh":"因此"},{"en":"permanent","zh":"永久的"},{"en":"deserve","zh":"应得"},{"en":"reserve","zh":"保留"},{"en":"prohibit","zh":"禁止"},{"en":"technical","zh":"技术的"},{"en":"permission","zh":"许可"},{"en":"indicate","zh":"表明"},{"en":"withdraw","zh":"撤回"},{"en":"annoyed","zh":"恼怒的"},{"en":"arrange","zh":"安排"},{"en":"interrupt","zh":"打断"},{"en":"assess","zh":"评估"},{"en":"identified","zh":"已识别的"},{"en":"display","zh":"展示"},{"en":"constant","zh":"不断的"},{"en":"imply","zh":"暗示；意味着"},{"en":"characteristic","zh":"特征；典型的"},{"en":"feature","zh":"特征；以…为特色"},{"en":"contrast","zh":"对比"}]};
+
+var TEST_NAMES = {
+  zhongkao: "中考完形词汇",
+  zhongkao3: "中考常考词",
+  gaoyi: "高一完形词汇",
+  gaokao: "高考完形词汇",
+  gaokao191: "高考阅读191词"
+};
+
+/* SECTION: state */
+var state = {
+  testType: "",
+  vocab: [],
+  studentName: "",
+  studentClass: "",
+  questions: [],
+  current: 0,
+  answers: [],
+  startTime: 0,
+  timerInterval: null
+};
+
+/* SECTION: utils */
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function formatTime(seconds) {
+  var m = Math.floor(seconds / 60);
+  var s = seconds % 60;
+  return m > 0 ? m + "分" + s + "秒" : s + "秒";
+}
+
+function getNow() {
+  var d = new Date();
+  var pad = function(n) { return n < 10 ? "0" + n : "" + n; };
+  return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+}
+
+/* SECTION: select */
+function selectTest(type) {
+  state.testType = type;
+  var cards = document.querySelectorAll(".test-card");
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.toggle("selected", cards[i].getAttribute("data-test") === type);
+  }
+  document.getElementById("btnNext").disabled = false;
+}
+
+function goInfoScreen() {
+  startQuiz();
+}
+
+/* SECTION: quiz */
+function startQuiz() {
+  state.vocab = ALL_VOCAB[state.testType];
+  state.questions = generateQuestions();
+  state.current = 0;
+  state.answers = [];
+  state.startTime = Date.now();
+
+  document.getElementById("selectScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
+
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  state.timerInterval = setInterval(function() {
+    var elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+    document.getElementById("quizTimer").textContent = formatTime(elapsed);
+  }, 1000);
+
+  renderQuestion();
+}
+
+function generateQuestions() {
+  var vocab = state.vocab;
+  var indices = [];
+  for (var i = 0; i < vocab.length; i++) indices.push(i);
+  var count = Math.min(50, vocab.length);
+  var selected = shuffle(indices).slice(0, count);
+  var questions = [];
+  for (var q = 0; q < selected.length; q++) {
+    var correctIdx = selected[q];
+    var correct = vocab[correctIdx];
+    var pool = vocab.filter(function(_, i) { return i !== correctIdx; });
+    var distractors = shuffle(pool).slice(0, 3);
+    var options = shuffle([correct].concat(distractors));
+    questions.push({
+      word: correct.en,
+      correctMeaning: correct.zh,
+      options: options.map(function(o) { return o.zh; }),
+      correctIdx: options.indexOf(correct)
+    });
+  }
+  return questions;
+}
+
+function renderQuestion() {
+  var q = state.questions[state.current];
+  var total = state.questions.length;
+  var num = state.current + 1;
+  document.getElementById("quizProgress").textContent = num + " / " + total;
+  document.getElementById("progressFill").style.width = (num / total * 100) + "%";
+  document.getElementById("qNumber").textContent = "第 " + num + " 题";
+  document.getElementById("qWord").textContent = q.word;
+
+  var listEl = document.getElementById("optionsList");
+  listEl.innerHTML = "";
+  var labels = ["A", "B", "C", "D"];
+  for (var i = 0; i < q.options.length; i++) {
+    var btn = document.createElement("button");
+    btn.className = "option-btn";
+    var labelSpan = document.createElement("span");
+    labelSpan.className = "opt-label";
+    labelSpan.textContent = labels[i];
+    var textSpan = document.createElement("span");
+    textSpan.textContent = q.options[i];
+    btn.appendChild(labelSpan);
+    btn.appendChild(textSpan);
+    btn.addEventListener("click", (function(index) {
+      return function() { selectOption(index); };
+    })(i));
+    listEl.appendChild(btn);
+  }
+}
+
+function selectOption(idx) {
+  var q = state.questions[state.current];
+  var buttons = document.querySelectorAll(".option-btn");
+  for (var i = 0; i < buttons.length; i++) buttons[i].classList.add("disabled");
+
+  state.answers.push({
+    correct: idx === q.correctIdx,
+    word: q.word,
+    selectedMeaning: q.options[idx],
+    correctMeaning: q.correctMeaning
+  });
+
+  if (idx === q.correctIdx) {
+    buttons[idx].classList.add("correct");
+  } else {
+    buttons[idx].classList.add("wrong");
+    buttons[q.correctIdx].classList.add("correct");
+  }
+
+  setTimeout(function() {
+    if (state.current < state.questions.length - 1) {
+      state.current++;
+      renderQuestion();
+    } else {
+      finishQuiz();
+    }
+  }, idx === q.correctIdx ? 400 : 900);
+}
+
+/* SECTION: finish */
+function finishQuiz() {
+  clearInterval(state.timerInterval);
+  var elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  var correctCount = state.answers.filter(function(a) { return a.correct; }).length;
+  var wrongCount = state.answers.length - correctCount;
+  var score = Math.round(correctCount / state.answers.length * 100);
+
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
+
+  var label = TEST_NAMES[state.testType] + " · 词汇测试";
+  document.getElementById("resultStudentName").textContent = label;
+  document.getElementById("scoreBig").textContent = score;
+  document.getElementById("scoreCorrect").textContent = correctCount;
+  document.getElementById("scoreWrong").textContent = wrongCount;
+  document.getElementById("scoreTime").textContent = formatTime(elapsed);
+  document.getElementById("statAcc").textContent = (correctCount / state.answers.length * 100).toFixed(1) + "%";
+  document.getElementById("statWrongRate").textContent = (wrongCount / state.answers.length * 100).toFixed(1) + "%";
+  document.getElementById("statAvg").textContent = (elapsed / state.answers.length).toFixed(1) + "秒";
+
+  var wrongAnswers = state.answers.filter(function(a) { return !a.correct; });
+  var wrongList = document.getElementById("wrongList");
+  wrongList.innerHTML = "";
+  var wrongSection = document.getElementById("wrongSection");
+
+  if (wrongAnswers.length > 0) {
+    wrongSection.classList.remove("hidden");
+    for (var i = 0; i < wrongAnswers.length; i++) {
+      var wa = wrongAnswers[i];
+      var item = document.createElement("div");
+      item.className = "wrong-item";
+      var wordDiv = document.createElement("div");
+      wordDiv.className = "wi-word";
+      wordDiv.textContent = wa.word;
+      var rowYour = document.createElement("div");
+      rowYour.className = "wi-row";
+      var tagYour = document.createElement("span");
+      tagYour.className = "wi-tag yours";
+      tagYour.textContent = "你的选择";
+      var textYour = document.createElement("span");
+      textYour.className = "wi-text";
+      textYour.textContent = wa.selectedMeaning;
+      rowYour.appendChild(tagYour);
+      rowYour.appendChild(textYour);
+      var rowRight = document.createElement("div");
+      rowRight.className = "wi-row";
+      var tagRight = document.createElement("span");
+      tagRight.className = "wi-tag right";
+      tagRight.textContent = "正确答案";
+      var textRight = document.createElement("span");
+      textRight.className = "wi-text";
+      textRight.textContent = wa.correctMeaning;
+      rowRight.appendChild(tagRight);
+      rowRight.appendChild(textRight);
+      item.appendChild(wordDiv);
+      item.appendChild(rowYour);
+      item.appendChild(rowRight);
+      wrongList.appendChild(item);
+    }
+  } else {
+    wrongSection.classList.add("hidden");
+  }
+
+  document.getElementById("btnReview").classList.toggle("hidden", wrongAnswers.length === 0);
+  window.scrollTo(0, 0);
+}
+
+
+/* SECTION: events */
+var cards = document.querySelectorAll(".test-card");
+for (var i = 0; i < cards.length; i++) {
+  cards[i].addEventListener("click", (function(card) {
+    return function() { selectTest(card.getAttribute("data-test")); };
+  })(cards[i]));
+}
+
+document.getElementById("btnNext").addEventListener("click", goInfoScreen);
+
+document.getElementById("btnRetry").addEventListener("click", function() {
+  document.getElementById("resultScreen").classList.add("hidden");
+  startQuiz();
+  window.scrollTo(0, 0);
+});
+
+document.getElementById("btnBackHome").addEventListener("click", function() {
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("selectScreen").classList.remove("hidden");
+  // Reset selection
+  var cs = document.querySelectorAll(".test-card");
+  for (var i = 0; i < cs.length; i++) cs[i].classList.remove("selected");
+  document.getElementById("btnNext").disabled = true;
+  state.testType = "";
+  window.scrollTo(0, 0);
+});
+
+document.getElementById("btnReview").addEventListener("click", function() {
+  var ws = document.getElementById("wrongSection");
+  if (ws.classList.contains("hidden")) ws.classList.remove("hidden");
+  ws.scrollIntoView({ behavior: "smooth" });
+});
+</script>
+</body>
+</html>
