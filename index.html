@@ -144,7 +144,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
   <div id="selectScreen" class="select-screen">
     <div class="badge">英语完形填空</div>
     <h1>常考词汇测试</h1>
-    <p class="subtitle">基于各地中考、高一、高考真题考频统计<br>9 套词库 · 初中 / 高中分类 · 选一个直接开测</p>
+    <p class="subtitle">基于各地中考、高一、高考真题考频统计<br>10 套词库 · 初中 / 高中分类 · 选一个直接开测</p>
     <div style="margin-bottom:24px">
       <div style="font-size:1.1rem;font-weight:700;color:#10b981;margin-bottom:10px;padding-left:4px;border-left:4px solid #10b981;padding-left:10px">初中</div>
       <div class="test-cards">
@@ -174,6 +174,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
         <div class="card-body">
           <div class="card-title">中考完形常考词</div>
           <div class="card-desc">153 个完形填空高频词</div>
+        </div>
+      </div>
+      <div class="test-card" data-test="zk_match">
+        <div class="card-icon" style="background:linear-gradient(135deg,#f59e0b,#b45309)">配</div>
+        <div class="card-body">
+          <div class="card-title">中考英语语法搭配</div>
+          <div class="card-desc">150 条高频搭配 · 四选一 + 填词 + 翻译</div>
         </div>
       </div>
       </div>
@@ -277,6 +284,8 @@ var ALL_VOCAB = {"chuyi":[{"en":"carry","zh":"搬运"},{"en":"catch","zh":"抓�
 /* SECTION: grammar-data */
 var GRAMMAR = {"forms":[{"base":"invite","ans":"invitation","alts":["invitation"],"pos":"名词","zh":"邀请；邀请函","neg":false},{"base":"agree","ans":"agreement","alts":["agreement"],"pos":"名词","zh":"协议；同意","neg":false},{"base":"differ","ans":"difference","alts":["difference"],"pos":"名词","zh":"差异；不同","neg":false},{"base":"safe","ans":"safety","alts":["safety"],"pos":"名词","zh":"安全","neg":false},{"base":"difficult","ans":"difficulty","alts":["difficulty"],"pos":"名词","zh":"困难；难题","neg":false},{"base":"honest","ans":"honesty","alts":["honesty"],"pos":"名词","zh":"诚实","neg":false},{"base":"warm","ans":"warmth","alts":["warmth"],"pos":"名词","zh":"温暖；暖意","neg":false},{"base":"long","ans":"length","alts":["length"],"pos":"名词","zh":"长度","neg":false},{"base":"wide","ans":"width","alts":["width"],"pos":"名词","zh":"宽度","neg":false},{"base":"deep","ans":"depth","alts":["depth"],"pos":"名词","zh":"深度","neg":false},{"base":"high","ans":"height","alts":["height"],"pos":"名词","zh":"高度","neg":false},{"base":"weigh","ans":"weight","alts":["weight"],"pos":"名词","zh":"重量","neg":false},{"base":"strong","ans":"strength","alts":["strength"],"pos":"名词","zh":"力量；优势","neg":false},{"base":"happy","ans":"happiness","alts":["happiness"],"pos":"名词","zh":"幸福；快乐","neg":false},{"base":"sad","ans":"sadness","alts":["sadness"],"pos":"名词","zh":"悲伤","neg":false},{"base":"kind","ans":"kindness","alts":["kindness"],"pos":"名词","zh":"善良；好意","neg":false},{"base":"die","ans":"death","alts":["death"],"pos":"名词","zh":"死亡","neg":false},{"base":"grow","ans":"growth","alts":["growth"],"pos":"名词","zh":"成长；增长","neg":false},{"base":"choose","ans":"choice","alts":["choice"],"pos":"名词","zh":"选择","neg":false},{"base":"true","ans":"truth","alts":["truth"],"pos":"名词","zh":"真相；事实","neg":false},{"base":"fail","ans":"failure","alts":["failure"],"pos":"名词","zh":"失败","neg":false},{"base":"develop","ans":"development","alts":["development"],"pos":"名词","zh":"发展；开发","neg":false},{"base":"achieve","ans":"achievement","alts":["achievement"],"pos":"名词","zh":"成就；成绩","neg":false},{"base":"appear","ans":"appearance","alts":["appearance"],"pos":"名词","zh":"外貌；出现","neg":false},{"base":"depend","ans":"dependence","alts":["dependence"],"pos":"名词","zh":"依赖；依靠","neg":false},{"base":"admit","ans":"admission","alts":["admission"],"pos":"名词","zh":"承认；准入","neg":false},{"base":"exist","ans":"existence","alts":["existence"],"pos":"名词","zh":"存在","neg":false},{"base":"possible","ans":"possibility","alts":["possibility"],"pos":"名词","zh":"可能性","neg":false},{"base":"responsible","ans":"responsibility","alts":["responsibility"],"pos":"名词","zh":"责任；职责","neg":false},{"base":"secure","ans":"security","alts":["security"],"pos":"名词","zh":"安全；保障","neg":false},{"base":"curious","ans":"curiosity","alts":["curiosity"],"pos":"名词","zh":"好奇心","neg":false},{"base":"efficient","ans":"efficiency","alts":["efficiency"],"pos":"名词","zh":"效率","neg":false},{"base":"accurate","ans":"accuracy","alts":["accuracy"],"pos":"名词","zh":"准确性","neg":false},{"base":"frequent","ans":"frequency","alts":["frequency"],"pos":"名词","zh":"频率","neg":false},{"base":"urgent","ans":"urgency","alts":["urgency"],"pos":"名词","zh":"紧急性","neg":false},{"base":"private","ans":"privacy","alts":["privacy"],"pos":"名词","zh":"隐私","neg":false},{"base":"recover","ans":"recovery","alts":["recovery"],"pos":"形容词","zh":"恢复；康复","neg":false},{"base":"explain","ans":"explanation","alts":["explanation"],"pos":"名词","zh":"解释","neg":false},{"base":"generous","ans":"generosity","alts":["generosity"],"pos":"名词","zh":"慷慨","neg":false},{"base":"anxious","ans":"anxiety","alts":["anxiety"],"pos":"名词","zh":"焦虑","neg":false},{"base":"approve","ans":"approval","alts":["approval"],"pos":"形容词","zh":"赞成；批准","neg":false},{"base":"argue","ans":"argument","alts":["argument"],"pos":"名词","zh":"争论；论点","neg":false},{"base":"brave","ans":"bravery","alts":["bravery"],"pos":"形容词","zh":"勇敢；勇气","neg":false},{"base":"describe","ans":"description","alts":["description"],"pos":"名词","zh":"描述","neg":false},{"base":"consume","ans":"consumption","alts":["consumption"],"pos":"名词","zh":"消耗；消费","neg":false},{"base":"submit","ans":"submission","alts":["submission"],"pos":"名词","zh":"提交；屈服","neg":false},{"base":"vary","ans":"variety","alts":["variety"],"pos":"名词","zh":"种类；多样化","neg":false},{"base":"recognize","ans":"recognition","alts":["recognition"],"pos":"名词","zh":"认出；认可","neg":false},{"base":"pronounce","ans":"pronunciation","alts":["pronunciation"],"pos":"名词","zh":"发音","neg":false},{"base":"poor","ans":"poverty","alts":["poverty"],"pos":"名词","zh":"贫穷","neg":false},{"base":"expand","ans":"expansion","alts":["expansion"],"pos":"名词","zh":"扩张","neg":false},{"base":"popular","ans":"popularity","alts":["popularity"],"pos":"名词","zh":"流行；人气","neg":false},{"base":"compare","ans":"comparison","alts":["comparison"],"pos":"名词","zh":"比较","neg":false},{"base":"expose","ans":"exposure","alts":["exposure"],"pos":"名词","zh":"暴露；接触","neg":false},{"base":"wise","ans":"wisdom","alts":["wisdom"],"pos":"名词","zh":"智慧","neg":false},{"base":"combine","ans":"combination","alts":["combination"],"pos":"名词","zh":"结合","neg":false},{"base":"assist","ans":"assistance","alts":["assistance"],"pos":"名词","zh":"协助；帮助","neg":false},{"base":"represent","ans":"representative","alts":["representative"],"pos":"名词","zh":"代表","neg":false},{"base":"able","ans":"ability","alts":["ability"],"pos":"名词","zh":"能力","neg":false},{"base":"capable","ans":"capability","alts":["capability"],"pos":"名词","zh":"能力","neg":false},{"base":"stable","ans":"stability","alts":["stability"],"pos":"名词","zh":"稳定","neg":false},{"base":"flexible","ans":"flexibility","alts":["flexibility"],"pos":"名词","zh":"灵活性","neg":false},{"base":"available","ans":"availability","alts":["availability"],"pos":"名词","zh":"可用性；可获得性","neg":false},{"base":"behave","ans":"behavior","alts":["behavior","behaviour"],"pos":"名词","zh":"行为；举止","neg":false},{"base":"attract","ans":"attraction","alts":["attraction"],"pos":"名词","zh":"吸引力；景点","neg":false},{"base":"contribute","ans":"contribution","alts":["contribution"],"pos":"名词","zh":"贡献；捐款","neg":false},{"base":"compete","ans":"competition","alts":["competition"],"pos":"名词","zh":"竞争；比赛","neg":false},{"base":"recommend","ans":"recommendation","alts":["recommendation"],"pos":"名词","zh":"推荐","neg":false},{"base":"organize","ans":"organization","alts":["organization"],"pos":"名词","zh":"组织；机构","neg":false},{"base":"participate","ans":"participation","alts":["participation"],"pos":"名词","zh":"参与","neg":false},{"base":"solve","ans":"solution","alts":["solution"],"pos":"名词","zh":"解决办法","neg":false},{"base":"intend","ans":"intention","alts":["intention"],"pos":"名词","zh":"意图；目的","neg":false},{"base":"instruct","ans":"instruction","alts":["instruction"],"pos":"名词","zh":"指示；说明书","neg":false},{"base":"participate","ans":"participant","alts":["participant"],"pos":"名词","zh":"参与者","neg":false},{"base":"compete","ans":"competitive","alts":["competitive"],"pos":"形容词","zh":"有竞争力的","neg":false},{"base":"compete","ans":"competitor","alts":["competitor"],"pos":"名词","zh":"竞争者","neg":false},{"base":"assist","ans":"assistant","alts":["assistant"],"pos":"名词","zh":"助手；助理","neg":false},{"base":"attract","ans":"attractive","alts":["attractive"],"pos":"形容词","zh":"有吸引力的","neg":false},{"base":"vary","ans":"various","alts":["various"],"pos":"形容词","zh":"各种各样的","neg":false},{"base":"respond","ans":"responsible","alts":["responsible"],"pos":"形容词","zh":"负责任的","neg":false},{"base":"respond","ans":"responsibility","alts":["responsibility"],"pos":"名词","zh":"责任；职责","neg":false},{"base":"science","ans":"scientific","alts":["scientific"],"pos":"形容词","zh":"科学的","neg":false},{"base":"science","ans":"scientist","alts":["scientist"],"pos":"名词","zh":"科学家","neg":false},{"base":"economy","ans":"economic","alts":["economic"],"pos":"形容词","zh":"经济的；与经济相关的","neg":false},{"base":"economy","ans":"economical","alts":["economical"],"pos":"形容词","zh":"节俭的；经济实惠的","neg":false},{"base":"energy","ans":"energetic","alts":["energetic"],"pos":"形容词","zh":"精力充沛的","neg":false},{"base":"magic","ans":"magical","alts":["magical"],"pos":"形容词","zh":"神奇的；魔法的","neg":false},{"base":"tradition","ans":"traditional","alts":["traditional"],"pos":"形容词","zh":"传统的","neg":false},{"base":"origin","ans":"original","alts":["original"],"pos":"形容词","zh":"最初的；原创的","neg":false},{"base":"culture","ans":"cultural","alts":["cultural"],"pos":"形容词","zh":"文化的","neg":false},{"base":"agriculture","ans":"agricultural","alts":["agricultural"],"pos":"形容词","zh":"农业的","neg":false},{"base":"environment","ans":"environmental","alts":["environmental"],"pos":"形容词","zh":"环境的","neg":false},{"base":"emotion","ans":"emotional","alts":["emotional"],"pos":"形容词","zh":"情绪的；情感的","neg":false},{"base":"profession","ans":"professional","alts":["professional"],"pos":"形容词","zh":"专业的；职业的","neg":false},{"base":"geography","ans":"geographical","alts":["geographical"],"pos":"形容词","zh":"地理的","neg":false},{"base":"intellect","ans":"intellectual","alts":["intellectual"],"pos":"形容词","zh":"智力的；脑力的","neg":false},{"base":"physics","ans":"physical","alts":["physical"],"pos":"形容词","zh":"物理的；身体的","neg":false},{"base":"history","ans":"historical","alts":["historical"],"pos":"形容词","zh":"历史的；与历史相关的","neg":false},{"base":"finance","ans":"financial","alts":["financial"],"pos":"形容词","zh":"金融的；财政的","neg":false},{"base":"benefit","ans":"beneficial","alts":["beneficial"],"pos":"形容词","zh":"有益的；有利的","neg":false},{"base":"influence","ans":"influential","alts":["influential"],"pos":"形容词","zh":"有影响力的","neg":false},{"base":"create","ans":"creative","alts":["creative"],"pos":"形容词","zh":"创造性的；有创造力的","neg":false},{"base":"intelligence","ans":"intelligent","alts":["intelligent"],"pos":"形容词","zh":"聪明的；有智慧的","neg":false},{"base":"value","ans":"valuable","alts":["valuable"],"pos":"形容词","zh":"有价值的；宝贵的","neg":false},{"base":"change","ans":"changeable","alts":["changeable"],"pos":"形容词","zh":"易变的；可变的","neg":false},{"base":"replace","ans":"replaceable","alts":["replaceable"],"pos":"形容词","zh":"可替代的","neg":false},{"base":"taste","ans":"tasty","alts":["tasty"],"pos":"名词","zh":"可口的；美味的","neg":false},{"base":"courage","ans":"courageous","alts":["courageous"],"pos":"形容词","zh":"勇敢的；有勇气的","neg":false},{"base":"stress","ans":"stressful","alts":["stressful"],"pos":"形容词","zh":"有压力的；紧张的","neg":false},{"base":"amaze","ans":"amazing","alts":["amazing","amazed"],"pos":"形容词","zh":"令人惊讶的 / 感到惊讶的","neg":false},{"base":"surprise","ans":"surprising","alts":["surprising","surprised"],"pos":"形容词","zh":"令人惊讶的 / 感到惊讶的","neg":false},{"base":"healthy","ans":"unhealthy","alts":["unhealthy"],"pos":"形容词","zh":"不健康的","neg":true},{"base":"necessary","ans":"unnecessary","alts":["unnecessary"],"pos":"形容词","zh":"不必要的","neg":true},{"base":"reasonable","ans":"unreasonable","alts":["unreasonable"],"pos":"形容词","zh":"不合理的","neg":true},{"base":"fortunate","ans":"unfortunate","alts":["unfortunate"],"pos":"形容词","zh":"不幸的","neg":true},{"base":"easy","ans":"uneasy","alts":["uneasy"],"pos":"形容词","zh":"不安的；心神不宁的","neg":true},{"base":"acceptable","ans":"unacceptable","alts":["unacceptable"],"pos":"形容词","zh":"不可接受的","neg":true},{"base":"fair","ans":"unfair","alts":["unfair"],"pos":"形容词","zh":"不公平的","neg":true},{"base":"efficient","ans":"inefficient","alts":["inefficient"],"pos":"形容词","zh":"低效的","neg":true},{"base":"consistent","ans":"inconsistent","alts":["inconsistent"],"pos":"形容词","zh":"不一致的","neg":true},{"base":"formal","ans":"informal","alts":["informal"],"pos":"形容词","zh":"不正式的","neg":true},{"base":"convenient","ans":"inconvenient","alts":["inconvenient"],"pos":"形容词","zh":"不方便的","neg":true},{"base":"appropriate","ans":"inappropriate","alts":["inappropriate"],"pos":"形容词","zh":"不合适的","neg":true},{"base":"dependent","ans":"independent","alts":["independent"],"pos":"形容词","zh":"独立的","neg":true},{"base":"active","ans":"inactive","alts":["inactive"],"pos":"形容词","zh":"不活跃的","neg":true},{"base":"significant","ans":"insignificant","alts":["insignificant"],"pos":"形容词","zh":"不重要的","neg":true},{"base":"accurate","ans":"inaccurate","alts":["inaccurate"],"pos":"形容词","zh":"不精确的","neg":true},{"base":"sufficient","ans":"insufficient","alts":["insufficient"],"pos":"形容词","zh":"不充足的","neg":true},{"base":"visible","ans":"invisible","alts":["invisible"],"pos":"形容词","zh":"看不见的","neg":true},{"base":"patient","ans":"impatient","alts":["impatient"],"pos":"形容词","zh":"不耐烦的","neg":true},{"base":"balance","ans":"imbalance","alts":["imbalance"],"pos":"名词","zh":"不平衡","neg":true},{"base":"logical","ans":"illogical","alts":["illogical"],"pos":"形容词","zh":"不合逻辑的","neg":true},{"base":"legal","ans":"illegal","alts":["illegal"],"pos":"形容词","zh":"不合法的","neg":true},{"base":"relevant","ans":"irrelevant","alts":["irrelevant"],"pos":"形容词","zh":"不相关的","neg":true},{"base":"replaceable","ans":"irreplaceable","alts":["irreplaceable"],"pos":"形容词","zh":"不可替代的","neg":true},{"base":"responsible","ans":"irresponsible","alts":["irresponsible"],"pos":"形容词","zh":"不负责任的","neg":true},{"base":"rational","ans":"irrational","alts":["irrational"],"pos":"形容词","zh":"不理性的","neg":true},{"base":"appear","ans":"disappear","alts":["disappear"],"pos":"动词","zh":"消失","neg":true},{"base":"cover","ans":"discover","alts":["discover"],"pos":"动词","zh":"发现","neg":true},{"base":"approve","ans":"disapprove","alts":["disapprove"],"pos":"动词","zh":"不赞成；不同意","neg":true},{"base":"satisfied","ans":"dissatisfied","alts":["dissatisfied"],"pos":"形容词","zh":"不满意的","neg":true},{"base":"ability","ans":"disability","alts":["disability"],"pos":"名词","zh":"残疾；缺陷","neg":true}],"phrases":[{"p":"classify...as...","zh":"把……归类为"},{"p":"regard/consider/view...as...","zh":"把……视作/认为"},{"p":"recognize...as...","zh":"公认……为；认可……是"},{"p":"serve as","zh":"充当；担任；起……作用"},{"p":"function as","zh":"起到……功能；充当"},{"p":"act as","zh":"担任；充当"},{"p":"account for","zh":"占据；解释"},{"p":"subscribe to","zh":"赞同；订阅"},{"p":"approve of (doing) sth","zh":"赞成做某事"},{"p":"disapprove of","zh":"不赞成"},{"p":"consist of","zh":"由……组成"},{"p":"consist in","zh":"在于；存在于"},{"p":"cope with / deal with","zh":"应对、处理"},{"p":"give rise to","zh":"引起、引发"},{"p":"bring about","zh":"导致、促成"},{"p":"make up for","zh":"弥补、补偿"},{"p":"live up to","zh":"不辜负；达到"},{"p":"come up with","zh":"提出；想出"},{"p":"come across","zh":"偶然遇见；发现"},{"p":"get across","zh":"使被理解"},{"p":"break down","zh":"崩溃；分解；出故障"},{"p":"break through","zh":"突破"},{"p":"take on","zh":"承担；呈现"},{"p":"take up","zh":"占据；从事"},{"p":"put forward","zh":"提出"},{"p":"rely/depend/count on","zh":"依靠；依赖"},{"p":"aim at doing sth","zh":"旨在做某事"},{"p":"at present","zh":"目前；现在"},{"p":"at the same time","zh":"同时"},{"p":"in time","zh":"及时；最终"},{"p":"on time","zh":"准时"},{"p":"in advance","zh":"提前"},{"p":"ahead of time/schedule","zh":"提前"},{"p":"for the first time","zh":"第一次"},{"p":"at first","zh":"起初；一开始"},{"p":"in the meantime/meanwhile","zh":"与此同时"},{"p":"from then on","zh":"从那时起"},{"p":"from now on","zh":"从现在起"},{"p":"in line with","zh":"与……一致；符合"},{"p":"in accordance with","zh":"依据；按照"},{"p":"in favor of","zh":"支持；有利于"},{"p":"in case of","zh":"万一；倘若"},{"p":"on account of","zh":"因为、由于"},{"p":"in spite of","zh":"尽管"},{"p":"as opposed to","zh":"相较于；而非"},{"p":"in terms of","zh":"就……而言；在……方面"},{"p":"in pursuit of","zh":"追求、寻求"},{"p":"in possession of","zh":"拥有；in the possession of 被……拥有"},{"p":"in support of","zh":"支持、拥护"},{"p":"in response to","zh":"作为对……的回应"},{"p":"in contrast to","zh":"与……形成对比"},{"p":"in comparison with","zh":"与……相比"},{"p":"on the basis of","zh":"基于……"},{"p":"in return for","zh":"作为……的回报"},{"p":"in exchange for","zh":"作为……的交换"},{"p":"in preparation for","zh":"为……做准备"},{"p":"be identical to","zh":"与……完全相同"},{"p":"be equivalent to","zh":"等同于；相当于"},{"p":"be inferior/superior to","zh":"劣于/优于"},{"p":"be prior to","zh":"在……之前"},{"p":"be junior/senior to","zh":"比……年幼/年长"},{"p":"be resistant to","zh":"抵制；对……有抵抗力"},{"p":"be fundamental to","zh":"对……至关重要"},{"p":"be crucial/vital/essential to","zh":"对……至关重要"},{"p":"be accessible to","zh":"可接近的、可使用的"},{"p":"be available to","zh":"可获得的、可利用的"},{"p":"be consistent with","zh":"与……一致"},{"p":"be devoted to","zh":"致力于；投身于"},{"p":"be accustomed to","zh":"习惯于"},{"p":"be exposed to","zh":"暴露于；接触到"},{"p":"be addicted to","zh":"沉迷于"},{"p":"be dedicated to","zh":"专注于、献身于"},{"p":"be committed to","zh":"致力于；承诺"},{"p":"be subject to","zh":"受制于；易遭受"},{"p":"be immune to","zh":"免疫于；不受……影响"},{"p":"be prone to","zh":"易于……的"},{"p":"no alternative/choice but to do","zh":"别无选择只能做"},{"p":"a tendency to do sth","zh":"做某事的倾向"},{"p":"an approach to (doing) sth","zh":"做某事的方法"},{"p":"an attitude to/towards","zh":"对……的态度"},{"p":"recognition of","zh":"认可；认知"},{"p":"adaptation to","zh":"对……的适应"},{"p":"exposure to","zh":"暴露于；接触"},{"p":"contribution to","zh":"对……的贡献/促成"},{"p":"preference for","zh":"偏爱……"},{"p":"access to","zh":"使用权；通道"},{"p":"advantage over","zh":"相较于……的优势"}]};
 
+var ZK_MATCH = {"form":[{"lead":"decide","ans":"to do","zh":"决定做"},{"lead":"hope","ans":"to do","zh":"希望做"},{"lead":"plan","ans":"to do","zh":"计划做"},{"lead":"agree","ans":"to do","zh":"同意做"},{"lead":"refuse","ans":"to do","zh":"拒绝做"},{"lead":"learn","ans":"to do","zh":"学会做"},{"lead":"can't wait","ans":"to do","zh":"迫不及待做"},{"lead":"manage","ans":"to do","zh":"设法做成"},{"lead":"offer","ans":"to do","zh":"主动提出做"},{"lead":"be supposed","ans":"to do","zh":"应该做"},{"lead":"in order","ans":"to do","zh":"为了做"},{"lead":"enjoy","ans":"doing","zh":"喜欢做"},{"lead":"finish","ans":"doing","zh":"完成做"},{"lead":"practice","ans":"doing","zh":"练习做"},{"lead":"mind","ans":"doing","zh":"介意做"},{"lead":"keep on","ans":"doing","zh":"一直做"},{"lead":"be busy","ans":"doing","zh":"忙于做"},{"lead":"be worth","ans":"doing","zh":"值得做"},{"lead":"feel like","ans":"doing","zh":"想要做"},{"lead":"avoid","ans":"doing","zh":"避免做"},{"lead":"consider","ans":"doing","zh":"考虑做"},{"lead":"can't help","ans":"doing","zh":"忍不住做"},{"lead":"It's no use","ans":"doing","zh":"做……没用"},{"lead":"look forward to","ans":"doing","zh":"期待做"},{"lead":"be used to","ans":"doing","zh":"习惯于做"},{"lead":"pay attention to","ans":"doing","zh":"注意做"},{"lead":"remember","ans":"to do","zh":"记得要做"},{"lead":"remember","ans":"doing","zh":"记得做过"},{"lead":"forget","ans":"to do","zh":"忘记要做"},{"lead":"forget","ans":"doing","zh":"忘记做过"},{"lead":"stop","ans":"to do","zh":"停下来去做"},{"lead":"stop","ans":"doing","zh":"停止做"},{"lead":"try","ans":"to do","zh":"尽力做"},{"lead":"try","ans":"doing","zh":"试着做"},{"lead":"go on","ans":"to do","zh":"接着做另一件"},{"lead":"go on","ans":"doing","zh":"继续做同一件"},{"lead":"mean","ans":"to do","zh":"打算做"},{"lead":"mean","ans":"doing","zh":"意味着"},{"lead":"regret","ans":"to do","zh":"遗憾要做"},{"lead":"regret","ans":"doing","zh":"后悔做过"}],"confuse":[{"zh":"说（内容）","ans":"say","opts":["say","tell","speak","talk"]},{"zh":"告诉某人","ans":"tell","opts":["say","tell","speak","talk"]},{"zh":"说（某种语言）","ans":"speak","opts":["say","tell","speak","talk"]},{"zh":"与某人交谈","ans":"talk","opts":["say","tell","speak","talk"]},{"zh":"看（动作）","ans":"look at","opts":["look at","see","watch","read"]},{"zh":"看见（结果）","ans":"see","opts":["look at","see","watch","read"]},{"zh":"观看（比赛、电视）","ans":"watch","opts":["look at","see","watch","read"]},{"zh":"阅读","ans":"read","opts":["look at","see","watch","read"]},{"zh":"听（动作）","ans":"listen to","opts":["listen to","hear","sound","listen"]},{"zh":"听见（结果）","ans":"hear","opts":["listen to","hear","sound","listen"]},{"zh":"带来","ans":"bring","opts":["bring","take","carry","fetch"]},{"zh":"带走","ans":"take","opts":["bring","take","carry","fetch"]},{"zh":"搬运","ans":"carry","opts":["bring","take","carry","fetch"]},{"zh":"去取来","ans":"fetch","opts":["bring","take","carry","fetch"]},{"zh":"借入","ans":"borrow","opts":["borrow","lend","keep","return"]},{"zh":"借出","ans":"lend","opts":["borrow","lend","keep","return"]},{"zh":"穿上（动作）","ans":"put on","opts":["put on","wear","be dressed in","dress"]},{"zh":"穿着（状态）","ans":"wear","opts":["put on","wear","be dressed in","dress"]},{"zh":"找（动作）","ans":"look for","opts":["look for","find","find out","search"]},{"zh":"找到（结果）","ans":"find","opts":["look for","find","find out","search"]},{"zh":"查明","ans":"find out","opts":["look for","find","find out","search"]},{"zh":"人花费（时间或钱）","ans":"spend","opts":["spend","cost","pay","take"]},{"zh":"物花费（钱）","ans":"cost","opts":["spend","cost","pay","take"]},{"zh":"人付款","ans":"pay","opts":["spend","cost","pay","take"]},{"zh":"事情花费（时间）","ans":"take","opts":["spend","cost","pay","take"]},{"zh":"过去常常做","ans":"used to do","opts":["used to do","be used to doing","be used to do","use to do"]},{"zh":"习惯于做","ans":"be used to doing","opts":["used to do","be used to doing","be used to do","use to do"]},{"zh":"被用来做","ans":"be used to do","opts":["used to do","be used to doing","be used to do","use to do"]},{"zh":"由……制成（看得出原料）","ans":"be made of","opts":["be made of","be made from","be made in","be made by"]},{"zh":"由……制成（看不出原料）","ans":"be made from","opts":["be made of","be made from","be made in","be made by"]},{"zh":"在某地制造","ans":"be made in","opts":["be made of","be made from","be made in","be made by"]},{"zh":"加入（组织）","ans":"join","opts":["join","join in","take part in","attend"]},{"zh":"参加（小型活动）","ans":"join in","opts":["join","join in","take part in","attend"]},{"zh":"参加（大型活动）","ans":"take part in","opts":["join","join in","take part in","attend"]},{"zh":"出席（会议）","ans":"attend","opts":["join","join in","take part in","attend"]},{"zh":"几乎没有（后接可数名词）","ans":"few","opts":["few","a few","little","a little"]},{"zh":"有一些（后接可数名词）","ans":"a few","opts":["few","a few","little","a little"]},{"zh":"几乎没有（后接不可数名词）","ans":"little","opts":["few","a few","little","a little"]},{"zh":"有一些（后接不可数名词）","ans":"a little","opts":["few","a few","little","a little"]},{"zh":"几乎不（副词）","ans":"hardly","opts":["hardly","hard","harder","hardest"]},{"zh":"努力地；硬的","ans":"hard","opts":["hardly","hard","harder","hardest"]},{"zh":"及时","ans":"in time","opts":["in time","on time","at times","for a time"]},{"zh":"准时","ans":"on time","opts":["in time","on time","at times","for a time"]},{"zh":"因为（后接名词或短语）","ans":"because of","opts":["because of","because","so","for"]},{"zh":"因为（后接从句）","ans":"because","opts":["because of","because","so","for"]},{"zh":"声音（总称）","ans":"sound","opts":["sound","voice","noise","noisy"]},{"zh":"嗓音","ans":"voice","opts":["sound","voice","noise","noisy"]},{"zh":"噪音","ans":"noise","opts":["sound","voice","noise","noisy"]},{"zh":"独自（客观状态）","ans":"alone","opts":["alone","lonely","lone","along"]},{"zh":"孤独的（主观感受）","ans":"lonely","opts":["alone","lonely","lone","along"]}],"blank":[{"prompt":"be famous ___","ans":"for","zh":"因……著名"},{"prompt":"wait ___","ans":"for","zh":"等待"},{"prompt":"be responsible ___","ans":"for","zh":"对……负责"},{"prompt":"be interested ___","ans":"in","zh":"对……感兴趣"},{"prompt":"take part ___","ans":"in","zh":"参加"},{"prompt":"be full ___","ans":"of","zh":"充满"},{"prompt":"be afraid ___","ans":"of","zh":"害怕"},{"prompt":"a symbol ___","ans":"of","zh":"……的象征"},{"prompt":"thanks ___","ans":"to","zh":"多亏"},{"prompt":"the key ___","ans":"to","zh":"……的关键"},{"prompt":"pay attention ___","ans":"to","zh":"注意"},{"prompt":"begin ___","ans":"with","zh":"以……开始"},{"prompt":"be busy ___","ans":"with","zh":"忙于"},{"prompt":"have an effect ___","ans":"on","zh":"对……有影响"},{"prompt":"depend ___","ans":"on","zh":"依靠"},{"prompt":"be good ___","ans":"at","zh":"擅长"},{"prompt":"regard ... ___","ans":"as","zh":"把……看作"}],"phrases":[{"en":"look after","zh":"照顾"},{"en":"look for","zh":"寻找"},{"en":"look up","zh":"查阅"},{"en":"look out","zh":"当心"},{"en":"look through","zh":"浏览"},{"en":"look into","zh":"调查"},{"en":"take care of","zh":"照顾"},{"en":"take part in","zh":"参加"},{"en":"take off","zh":"脱下；起飞"},{"en":"take place","zh":"发生"},{"en":"take up","zh":"开始从事；占据"},{"en":"take pride in","zh":"为……感到自豪"},{"en":"make sure","zh":"确保"},{"en":"make up one's mind","zh":"下定决心"},{"en":"make friends with","zh":"与……交朋友"},{"en":"make a difference","zh":"有影响；有作用"},{"en":"make up","zh":"编造；组成"},{"en":"get on well with","zh":"与……相处好"},{"en":"get over","zh":"克服"},{"en":"get rid of","zh":"除去；摆脱"},{"en":"get in the way of","zh":"妨碍"},{"en":"get in touch with","zh":"与……取得联系"},{"en":"put on","zh":"穿上；上演"},{"en":"put off","zh":"推迟"},{"en":"put up with","zh":"忍受"},{"en":"put out","zh":"扑灭"},{"en":"put away","zh":"收好"},{"en":"give up","zh":"放弃"},{"en":"give sb. a hand","zh":"帮某人一把"},{"en":"give away","zh":"赠送；泄露"},{"en":"turn on","zh":"打开"},{"en":"turn off","zh":"关闭"},{"en":"turn out","zh":"结果是"},{"en":"turn down","zh":"调小；拒绝"},{"en":"come true","zh":"实现"},{"en":"come up with","zh":"想出"},{"en":"come across","zh":"偶遇"},{"en":"be good for","zh":"对……有益"},{"en":"be bad for","zh":"对……有害"},{"en":"be proud of","zh":"为……自豪"},{"en":"be strict with sb.","zh":"对某人严格"},{"en":"be strict about sth.","zh":"对某事严格"},{"en":"be similar to","zh":"与……相似"},{"en":"be worried about","zh":"担心"},{"en":"be surprised at","zh":"对……惊讶"},{"en":"be interested in","zh":"对……感兴趣"},{"en":"be full of","zh":"充满"},{"en":"be filled with","zh":"充满"},{"en":"be afraid of","zh":"害怕"},{"en":"be ready for","zh":"为……准备"},{"en":"be late for","zh":"迟到"},{"en":"be famous for","zh":"因……著名"},{"en":"be famous as","zh":"作为……著名"},{"en":"be pleased with","zh":"对……满意"},{"en":"be satisfied with","zh":"对……满意"},{"en":"be responsible for","zh":"对……负责"},{"en":"in a hurry","zh":"匆忙"},{"en":"after a while","zh":"过了一会儿"},{"en":"with a smile","zh":"带着微笑"},{"en":"have a try","zh":"试一试"},{"en":"have a rest","zh":"休息一下"},{"en":"have a good time","zh":"玩得开心"},{"en":"make an effort","zh":"努力"},{"en":"make a choice","zh":"做选择"},{"en":"make a decision","zh":"做决定"},{"en":"all year round","zh":"全年"},{"en":"in a word","zh":"总之"},{"en":"first of all","zh":"首先"},{"en":"at the age of","zh":"在……岁时"},{"en":"in one's thirties","zh":"在三十多岁时"},{"en":"the number of","zh":"……的数量"},{"en":"a number of","zh":"许多"},{"en":"by the way","zh":"顺便"},{"en":"in the middle of","zh":"在……中间"},{"en":"at the same time","zh":"同时"},{"en":"one third","zh":"三分之一"},{"en":"two thirds","zh":"三分之二"},{"en":"used to do","zh":"过去常常"},{"en":"be used to doing","zh":"习惯于"},{"en":"be used to do","zh":"被用来"},{"en":"be made of","zh":"由……制成（看得出原料）"},{"en":"be made from","zh":"由……制成（看不出原料）"},{"en":"be made in","zh":"在某地制造"},{"en":"join in","zh":"参加（活动）"},{"en":"in time","zh":"及时"},{"en":"on time","zh":"准时"},{"en":"because of","zh":"因为（加名词）"},{"en":"sound","zh":"声音（总称）"},{"en":"voice","zh":"嗓音"},{"en":"noise","zh":"噪音"},{"en":"alone","zh":"独自"},{"en":"lonely","zh":"孤独的"},{"en":"hardly","zh":"几乎不"}]};
+
 var TEST_NAMES = {
   chuyi: "初一阅读常考词",
   chuyi_wanxing: "初一完形常考词",
@@ -286,7 +295,8 @@ var TEST_NAMES = {
   gaokao_reading: "高考阅读理解常考词",
   gaoyi: "高一完形常考词",
   gaokao: "高考完形常考词",
-  grammar: "语法填空·词汇变形"
+  grammar: "语法填空·词汇变形",
+  zk_match: "中考英语语法搭配"
 };
 
 /* SECTION: state */
@@ -361,6 +371,7 @@ function startQuiz() {
 
 function generateQuestions() {
   if (state.testType === "grammar") return buildGrammarQuestions();
+  if (state.testType === "zk_match") return buildZkQuestions();
   var vocab = state.vocab;
   var indices = [];
   for (var i = 0; i < vocab.length; i++) indices.push(i);
@@ -531,6 +542,105 @@ function matchEn(val, q) {
 }
 /* SECTION: grammar-logic-end */
 
+
+/* SECTION: zk-logic */
+// 中考语法搭配：20 道四选一 + 10 道挖空填词 + 10 道英译中 + 10 道中译英
+function buildZkQuestions() {
+  var D = ZK_MATCH, qs = [], i;
+  var fidx = [], cidx = [];
+  for (i = 0; i < D.form.length; i++) fidx.push(i);
+  for (i = 0; i < D.confuse.length; i++) cidx.push(i);
+  fidx = shuffle(fidx).slice(0, 12);
+  cidx = shuffle(cidx).slice(0, 8);
+
+  for (i = 0; i < fidx.length; i++) {
+    var f = D.form[fidx[i]];
+    var opts = shuffle(["to do", "doing", "done", "to be done"]);
+    qs.push({
+      type: "mchoice", word: f.lead + " ___", hintZh: f.zh, confuse: false,
+      options: opts, correctIdx: opts.indexOf(f.ans),
+      correctMeaning: f.ans, zh: f.zh
+    });
+  }
+  for (i = 0; i < cidx.length; i++) {
+    var c = D.confuse[cidx[i]];
+    var co = shuffle(c.opts.slice());
+    qs.push({
+      type: "mchoice", word: c.zh, hintZh: "", confuse: true,
+      options: co, correctIdx: co.indexOf(c.ans),
+      correctMeaning: c.ans, zh: c.zh
+    });
+  }
+
+  var bidx = [];
+  for (i = 0; i < D.blank.length; i++) bidx.push(i);
+  bidx = shuffle(bidx).slice(0, 10);
+  for (i = 0; i < bidx.length; i++) {
+    var b = D.blank[bidx[i]];
+    qs.push({
+      type: "mblank", word: b.prompt, ans: b.ans,
+      correctMeaning: b.ans, zh: b.zh, options: [], correctIdx: -1
+    });
+  }
+
+  var pidx = [];
+  for (i = 0; i < D.phrases.length; i++) pidx.push(i);
+  pidx = shuffle(pidx);
+  for (i = 0; i < 10 && i < pidx.length; i++) {
+    var p1 = D.phrases[pidx[i]];
+    qs.push({ type: "mzh", word: p1.en, correctMeaning: p1.zh, options: [], correctIdx: -1 });
+  }
+  for (i = 10; i < 20 && i < pidx.length; i++) {
+    var p2 = D.phrases[pidx[i]];
+    qs.push({
+      type: "men", word: p2.zh, correctMeaning: p2.en,
+      alts: _phraseAlts(p2.en).concat(_PHRASE_EXTRA_ALTS[p2.en] || []), options: [], correctIdx: -1
+    });
+  }
+  return qs;
+}
+
+function _normEnPhrase(s) {
+  return String(s).toLowerCase()
+    .replace(/sb\.|sth\./g, " ")
+    .replace(/[^a-z]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+var _PHRASE_EXTRA_ALTS = {
+  "get on well with": ["get along well with"],
+  "make up one's mind": ["make up my mind", "make up his mind", "make up her mind"],
+  "in one's thirties": ["in his thirties", "in her thirties"],
+  "at the age of": ["at the age of"]
+};
+function _phraseAlts(en) {
+  var list = [String(en)];
+  var parts = String(en).split("/");
+  if (parts.length > 1) {
+    for (var i = 0; i < parts.length; i++) list.push(parts[i].trim());
+  }
+  return list;
+}
+function matchPhraseEn(val, q) {
+  var v = _normEnPhrase(val);
+  if (!v) return false;
+  var cands = (q.alts && q.alts.length) ? q.alts : [q.correctMeaning];
+  for (var i = 0; i < cands.length; i++) {
+    var c = _normEnPhrase(cands[i]);
+    if (!c) continue;
+    if (v === c) return true;
+    if (c.length >= 8 && _lev1(v.replace(/ /g, ""), c.replace(/ /g, ""))) return true;
+  }
+  return false;
+}
+function matchBlank(val, q) {
+  var v = String(val).toLowerCase().replace(/[^a-z]/g, "");
+  var c = String(q.ans).toLowerCase().replace(/[^a-z]/g, "");
+  return v.length > 0 && v === c;
+}
+/* SECTION: zk-logic-end */
+
+
 function renderQuestion() {
   var q = state.questions[state.current];
   var total = state.questions.length;
@@ -543,6 +653,10 @@ function renderQuestion() {
   else if (q.type === "gchoice") badge = '<span class="write-type-badge">选词形</span>';
   else if (q.type === "gwrite") badge = '<span class="write-type-badge">写词形</span>';
   else if (q.type === "gphrase") badge = '<span class="write-type-badge">写中文</span>';
+  else if (q.type === "mchoice") badge = '<span class="write-type-badge">四选一</span>';
+  else if (q.type === "mblank") badge = '<span class="write-type-badge">填词</span>';
+  else if (q.type === "mzh") badge = '<span class="write-type-badge">英译中</span>';
+  else if (q.type === "men") badge = '<span class="write-type-badge">中译英</span>';
   document.getElementById("qNumber").innerHTML = "第 " + num + " 题" + badge;
   document.getElementById("qWord").textContent = q.word;
 
@@ -564,6 +678,20 @@ function renderQuestion() {
   } else if (q.type === "gphrase") {
     hintEl.textContent = "请写出这个短语的中文意思（意思对即可）";
     inputMode = "zh"; placeholder = "输入中文意思...";
+  }
+  else if (q.type === "mchoice") {
+    hintEl.innerHTML = q.confuse
+      ? "请选择与「" + q.word + "」对应的英文"
+      : "请选择空格处应填的形式（" + q.hintZh + "）";
+  } else if (q.type === "mblank") {
+    hintEl.textContent = "在空格处填入一个词（" + q.zh + "）";
+    inputMode = "en"; placeholder = "填一个词...";
+  } else if (q.type === "mzh") {
+    hintEl.textContent = "请写出这个短语的中文意思（意思对即可）";
+    inputMode = "zh"; placeholder = "输入中文意思...";
+  } else if (q.type === "men") {
+    hintEl.textContent = "请根据中文写出对应的英文短语";
+    inputMode = "en"; placeholder = "输入英文短语...";
   }
 
   if (inputMode) {
@@ -1188,6 +1316,8 @@ function submitWriteAnswer() {
   var q = state.questions[state.current];
   var isCorrect;
   if (q.type === "gwrite") { isCorrect = matchEn(val, q); }
+  else if (q.type === "mblank") { isCorrect = matchBlank(val, q); }
+  else if (q.type === "men") { isCorrect = matchPhraseEn(val, q); }
   else { isCorrect = fuzzyMatch(val, q.correctMeaning); }
 
   input.disabled = true;
@@ -1264,7 +1394,7 @@ function finishQuiz() {
   document.getElementById("quizScreen").classList.add("hidden");
   document.getElementById("resultScreen").classList.remove("hidden");
 
-  var label = TEST_NAMES[state.testType] + (state.testType === "grammar" ? "" : " · 词汇测试");
+  var label = TEST_NAMES[state.testType] + ((state.testType === "grammar" || state.testType === "zk_match") ? "" : " · 词汇测试");
   document.getElementById("resultStudentName").textContent = label;
   document.getElementById("scoreBig").textContent = score;
   document.getElementById("scoreCorrect").textContent = correctCount;
